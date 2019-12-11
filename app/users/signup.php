@@ -9,7 +9,6 @@ if (isset($_POST['email'], $_POST['name'], $_POST['password'])) {
     $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
     $name = filter_var($_POST['name'], FILTER_SANITIZE_STRING);
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-    $errorMessage = "The email $email already exists!";
 
     // Check if email already exists
     $query = 'SELECT * FROM users WHERE email = :email';

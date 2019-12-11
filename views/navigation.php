@@ -10,6 +10,10 @@
         <a class="nav-link" href="/about.php">About</a>
     </li><!-- /nav-item -->
 
+    <?php if (isset($_SESSION['user'])): ?>
+        <li><a  href="profile.php">Profile</a></li><!-- /nav-item -->
+    <?php endif; ?>
+
     <li>
         <?php if (isset($_SESSION['user'])): ?>
             <a  href="/app/users/logout.php">Logout</a>

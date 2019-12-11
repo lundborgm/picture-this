@@ -42,3 +42,8 @@ button {
 small {
   font-size: 12px;
 }
+
+h1 {
+  font-size: 25px;
+  font-weight: bold;
+}
