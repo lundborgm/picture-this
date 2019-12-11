@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 require __DIR__.'/../autoload.php';
 
-if (isset($_POST['email'])) {
+if (isset($_POST['password'])) {
 
-    $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
     $id = filter_var($_SESSION['user']['id'], FILTER_SANITIZE_NUMBER_INT);
 
-    // Update email
-    $query = 'UPDATE users SET email = :email WHERE id = :id';
+    // Change password
+    $query = 'UPDATE users SET password = :password WHERE id = :id';
     $statement = $pdo->prepare($query);
 
     if (!$statement) {
@@ -18,7 +18,7 @@ if (isset($_POST['email'])) {
     }
 
     $statement->execute([
-        ':email' => $email,
+        ':password' => $password,
         ':id' => $id
         ]);
 }
