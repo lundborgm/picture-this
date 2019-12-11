@@ -8,10 +8,12 @@ require __DIR__.'/../autoload.php';
 if (isset($_POST['email'], $_POST['password'])) {
 
     $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+    $query = 'SELECT * FROM users WHERE email = :email';
 
-    $statement = $pdo->prepare('SELECT * FROM users WHERE email = :email');
-    $statement->bindParam(':email', $email, PDO::PARAM_STR);
-    $statement->execute();
+    $statement = $pdo->prepare($query);
+    $statement->execute([
+        ':email' => $email
+    ]);
 
     // Fetch the user as an associative array.
     $user = $statement->fetch(PDO::FETCH_ASSOC);
