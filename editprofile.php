@@ -23,11 +23,23 @@ if (!isset($_SESSION['user'])) {
 
     <h1>Change password</h1>
     <form action="app/users/changepassword.php" method="post">
-        <div class="form-group">
-            <label for="password">New password:</label>
-            <input class="form-control" type="password" name="password" id="password" required>
-            <small class="form-text text-muted">Change your password</small>
-        </div><!-- /form-group -->
+    <div class="form-group">
+        <label for="old-password">Old password:</label>
+        <input class="form-control" type="password" name="old-password" id="old-password" required>
+        <small class="form-text text-muted">Change your password</small>
+    </div><!-- /form-group -->
+
+    <div class="form-group">
+        <label for="new-password">New password:</label>
+        <input class="form-control" type="password" name="new-password" id="new-password" required>
+        <small class="form-text text-muted">Change your password</small>
+    </div><!-- /form-group -->
+
+    <div class="form-group">
+        <label for="confirm-password">Confirm password:</label>
+        <input class="form-control" type="password" name="confirm-password" id="confirm-password" required>
+        <small class="form-text text-muted">Change your password</small>
+    </div><!-- /form-group -->
 
         <button type="submit">Save changes</button>
     </form>

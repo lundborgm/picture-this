@@ -4,13 +4,12 @@ declare(strict_types=1);
 
 require __DIR__.'/../autoload.php';
 
-if (isset($_POST['password'])) {
+if (isset($_POST['old-password'], $_POST['new-password'], $_POST['confirm-password'])) {
 
-    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-    $id = filter_var($_SESSION['user']['id'], FILTER_SANITIZE_NUMBER_INT);
+    $password = $_POST['old-password'];
+    $id = $_SESSION['user']['id'];
 
-    // Change password
-    $query = 'UPDATE users SET password = :password WHERE id = :id';
+    $query = 'SELECT * FROM users WHERE id = :id';
     $statement = $pdo->prepare($query);
 
     if (!$statement) {
@@ -18,9 +17,26 @@ if (isset($_POST['password'])) {
     }
 
     $statement->execute([
-        ':password' => $password,
-        ':id' => $id
-        ]);
+    ':id' => $id
+    ]);
+
+    $user = $statement->fetch(PDO::FETCH_ASSOC);
+
+    // Check if old password is the same as in the database, and if the new one is equal to confirm-password.
+    if (password_verify($password, $user['password']) && $_POST['new-password'] === $_POST['confirm-password']) {
+
+    $newPassword = password_hash($_POST['new-password'], PASSWORD_DEFAULT);
+    $id = $_SESSION['user']['id'];
+
+    // Change password
+    $query = 'UPDATE users SET password = :password WHERE id = :id';
+    $statement = $pdo->prepare($query);
+
+    $statement->execute([
+        ':id' => $id,
+        ':password' => $newPassword
+    ]);
+    }
 }
 
 redirect('/editprofile.php');
