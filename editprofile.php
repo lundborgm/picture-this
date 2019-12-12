@@ -27,6 +27,18 @@ if (isset($_SESSION['errors'])) {
 <article>
 
     <h1>Edit profile</h1>
+    <h2>Update biography</h2>
+    <form action="app/users/editprofile.php" method="post">
+        <div class="form-group">
+            <label for="biography">Biography:</label>
+            <textarea class="form-control" name="biography" id="biography" maxlength="100"></textarea>
+            <small class="form-text text-muted">Change your bio</small>
+        </div><!-- /form-group -->
+
+        <button type="submit">Save changes</button>
+    </form>
+
+    <h2>Change email</h2>
     <form action="app/users/editprofile.php" method="post">
         <div class="form-group">
             <label for="email">New email:</label>
@@ -37,7 +49,7 @@ if (isset($_SESSION['errors'])) {
         <button type="submit">Save changes</button>
     </form>
 
-    <h1>Change password</h1>
+    <h2>Change password</h2>
     <form action="app/users/changepassword.php" method="post">
     <div class="form-group">
         <label for="old-password">Old password:</label>

@@ -16,3 +16,18 @@ if (!function_exists('redirect')) {
         exit;
     }
 }
+
+function getUserById($pdo, $userId)
+{
+
+    $userId = $_SESSION['user']['id'];
+    $query = 'SELECT * FROM users WHERE id = :id';
+
+    $statement = $pdo->prepare($query);
+    $statement->execute([
+        ':id' => $userId
+    ]);
+
+    $user = $statement->fetch(PDO::FETCH_ASSOC);
+
+}
