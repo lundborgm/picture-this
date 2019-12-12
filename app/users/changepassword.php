@@ -32,10 +32,19 @@ if (isset($_POST['old-password'], $_POST['new-password'], $_POST['confirm-passwo
     $query = 'UPDATE users SET password = :password WHERE id = :id';
     $statement = $pdo->prepare($query);
 
+    if (!$statement) {
+        die(var_dump($pdo->errorInfo()));
+    }
+
     $statement->execute([
         ':id' => $id,
         ':password' => $newPassword
     ]);
+
+    $_SESSION['messages'] = ["The password was changed!"];
+
+    } else {
+        $_SESSION['errors'] = ["Wrong password, try again."];
     }
 }
 

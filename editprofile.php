@@ -6,6 +6,22 @@ if (!isset($_SESSION['user'])) {
     redirect('/');
 }
 
+if (isset($_SESSION['messages'])) {
+    foreach ($_SESSION['messages'] as $message) {
+        echo $message;
+
+        unset($_SESSION['messages']);
+    }
+}
+
+if (isset($_SESSION['errors'])) {
+    foreach ($_SESSION['errors'] as $error) {
+        echo $error;
+
+        unset($_SESSION['errors']);
+    }
+}
+
 ?>
 
 <article>

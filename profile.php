@@ -12,6 +12,7 @@ if (!isset($_SESSION['user'])) {
 <article>
     <h1>Profile</h1>
         <p>Hello, <?php echo $_SESSION['user']['name']; ?>. This is your profile.</p>
+        <p><?php echo $_SESSION['user']['biography']; ?></p>
 
         <a href="editprofile.php"><button>Edit profile</button></a>
 </article>
