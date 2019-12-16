@@ -4,6 +4,43 @@ declare(strict_types=1);
 
 require __DIR__.'/../autoload.php';
 
+if (isset($_FILES['avatar'])) {
+
+    $avatar = $_FILES['avatar'];
+    $avatarName = $avatar['name'];
+    $date = date('ymd');
+
+
+    if ($avatar['type'] !== 'image/png') {
+        echo 'The image file type is not allowed.';
+    }
+
+    elseif ($avatar['size'] > 3000000) {
+        echo 'The uploaded file exceeded the file size limit.';
+    }
+
+    else {
+        $destination = __DIR__.'/../../uploads/avatar/'.$date.'-'.$avatarName;
+
+        move_uploaded_file($avatar['tmp_name'], $destination);
+
+        $_SESSION['messages'] = ["Success!"];
+    }
+
+    // Update avatar
+    // $query = 'UPDATE users SET avatar = :avatar WHERE id = :id';
+    // $statement = $pdo->prepare($query);
+
+    // if (!$statement) {
+    //     die(var_dump($pdo->errorInfo()));
+    // }
+
+    // $statement->execute([
+    //     ':avatar' => $avatar,
+    //     ':id' => $id
+    //     ]);
+}
+
 if (isset($_POST['biography'])) {
 
     $bio = filter_var($_POST['biography'], FILTER_SANITIZE_STRING);

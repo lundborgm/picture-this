@@ -27,6 +27,16 @@ if (isset($_SESSION['errors'])) {
 <article>
 
     <h1>Edit profile</h1>
+    <h2>Update avatar</h2>
+    <form action="app/users/editprofile.php" method="post" enctype="multipart/form-data">
+        <div>
+            <label for="avatar">Avatar:</label>
+            <input type="file" accept=".png" name="avatar" id="avatar">
+            <small class="form-text text-muted">Update your avatar picture</small>
+        </div>
+        <button type="submit">Upload</button>
+    </form>
+
     <h2>Update biography</h2>
     <form action="app/users/editprofile.php" method="post">
         <div class="form-group">
