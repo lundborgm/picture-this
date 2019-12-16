@@ -22,16 +22,21 @@ if (isset($_SESSION['errors'])) {
     }
 }
 
+$user = getUserById($_SESSION['user']['id']);
+$avatar = $user['avatar_image'];
+$biography = $user['biography'];
+
 ?>
 
 <article>
 
     <h1>Edit profile</h1>
     <h2>Update avatar</h2>
+    <img class="avatar" src="<?php echo "uploads/avatar/".$avatar ?>" alt="">
     <form action="app/users/editprofile.php" method="post" enctype="multipart/form-data">
         <div>
             <label for="avatar">Avatar:</label>
-            <input type="file" accept=".png" name="avatar" id="avatar">
+            <input type="file" accept=".png, .jpg, .jpeg" name="avatar" id="avatar">
             <small class="form-text text-muted">Update your avatar picture</small>
         </div>
         <button type="submit">Upload</button>
@@ -41,7 +46,7 @@ if (isset($_SESSION['errors'])) {
     <form action="app/users/editprofile.php" method="post">
         <div class="form-group">
             <label for="biography">Biography:</label>
-            <textarea class="form-control" name="biography" id="biography" maxlength="100"></textarea>
+            <textarea class="form-control" name="biography" id="biography" maxlength="100"><?php echo $biography; ?></textarea>
             <small class="form-text text-muted">Change your bio</small>
         </div><!-- /form-group -->
 

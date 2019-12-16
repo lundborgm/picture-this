@@ -16,3 +16,30 @@ if (!function_exists('redirect')) {
         exit;
     }
 }
+
+/**
+ * Get user from the database
+ *
+ * @param integer $userId
+ *
+ * @param string $dbPath
+ *
+ * @return array
+ */
+function getUserById(int $userId, string $dbPath = 'sqlite:app/database/database.db'): array
+{
+    $pdo = new PDO($dbPath);
+    $query = 'SELECT * FROM users WHERE id = :id';
+    $statement = $pdo->prepare($query);
+
+    if (!$statement) {
+        die(var_dump($pdo->errorInfo()));
+    }
+
+    $statement->execute([
+        ':id' => $userId
+    ]);
+
+    $user = $statement->fetch(PDO::FETCH_ASSOC);
+    return $user;
+}
