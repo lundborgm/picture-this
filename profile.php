@@ -11,6 +11,10 @@ $user = getUserById($_SESSION['user']['id']);
 $avatar = $user['avatar_image'];
 $biography = $user['biography'];
 
+$posts = getPostById($_SESSION['user']['id']);
+
+// die(var_dump($posts));
+
 ?>
 
 <article>
@@ -18,11 +22,23 @@ $biography = $user['biography'];
         <p>Hello, <?php echo $_SESSION['user']['name']; ?>. This is your profile.</p>
         <h2>Biography</h2>
         <p><?php echo $biography; ?></p>
-        <img class="avatar" src="<?php echo "uploads/avatar/".$avatar ?>" alt="">
+        <img class="avatar" src="<?php echo "uploads/avatar/".$avatar; ?>" alt="">
 
         <a href="editprofile.php"><button>Edit profile</button></a>
 
         <a href="newpost.php"><button>New post</button></a>
+
+
+    <?php foreach ($posts as $post): ?>
+        <article>
+            <h2> <?php echo $post['title']; ?> </h2>
+            <img src="<?php echo "uploads/".$post['image']; ?>" alt="">
+            <p> <?php echo $post['content']; ?> </p>
+        </article>
+    <?php endforeach; ?>
+
+
+
 </article>
 
 <?php require __DIR__.'/views/footer.php'; ?>

@@ -43,3 +43,30 @@ function getUserById(int $userId, string $dbPath = 'sqlite:app/database/database
     $user = $statement->fetch(PDO::FETCH_ASSOC);
     return $user;
 }
+
+/**
+ * Get posts from the database
+ *
+ * @param integer $authorId
+ *
+ * @param string $dbPath
+ *
+ * @return array
+ */
+function getPostById(int $authorId, string $dbPath = 'sqlite:app/database/database.db'): array
+{
+    $pdo = new PDO($dbPath);
+    $query = 'SELECT * FROM posts WHERE author_id = :author_id';
+    $statement = $pdo->prepare($query);
+
+    if (!$statement) {
+        die(var_dump($pdo->errorInfo()));
+    }
+
+    $statement->execute([
+        ':author_id' => $authorId
+    ]);
+
+    $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
+    return $posts;
+}
