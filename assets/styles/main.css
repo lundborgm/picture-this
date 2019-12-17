@@ -56,3 +56,15 @@ h2 {
   width: 100px;
   border-radius: 100px;
 }
+
+.post-image {
+  width: 200px;
+}
+
+.posts {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  margin: 0 0 20px 0;
+  padding: 10px;
+}

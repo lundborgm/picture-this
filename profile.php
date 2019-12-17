@@ -13,8 +13,6 @@ $biography = $user['biography'];
 
 $posts = getPostById($_SESSION['user']['id']);
 
-// die(var_dump($posts));
-
 ?>
 
 <article>
@@ -30,10 +28,14 @@ $posts = getPostById($_SESSION['user']['id']);
 
 
     <?php foreach ($posts as $post): ?>
-        <article>
+        <article class="posts">
             <h2> <?php echo $post['title']; ?> </h2>
-            <img src="<?php echo "uploads/".$post['image']; ?>" alt="">
+            <p> <?php echo $post['id']; ?></p>
+            <a href="<?php echo "editpost.php?id=".$post['id']; ?>"><button>Edit post</button></a>
+            <img class="post-image" src="<?php echo "uploads/".$post['image']; ?>" alt="">
             <p> <?php echo $post['content']; ?> </p>
+            <small> <?php echo "Posted by: ".$user['name']; ?></small>
+            <small> <?php echo "Published: ".$post['date']; ?></small>
         </article>
     <?php endforeach; ?>
 

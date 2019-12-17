@@ -70,3 +70,30 @@ function getPostById(int $authorId, string $dbPath = 'sqlite:app/database/databa
     $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
     return $posts;
 }
+
+/**
+ * Get posts from the database -> edit posts
+ *
+ * @param integer $postId
+ *
+ * @param string $dbPath
+ *
+ * @return array
+ */
+function editPost(int $postId, string $dbPath = 'sqlite:app/database/database.db'): array
+{
+    $pdo = new PDO($dbPath);
+    $query = 'SELECT * FROM posts WHERE id = :id';
+    $statement = $pdo->prepare($query);
+
+    if (!$statement) {
+        die(var_dump($pdo->errorInfo()));
+    }
+
+    $statement->execute([
+        ':id' => $postId
+    ]);
+
+    $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
+    return $posts;
+}
