@@ -30,7 +30,7 @@ $posts = editPost($_GET['id']);
 
 <article>
 
-<?php foreach ($posts as $post): ?>
+    <?php foreach ($posts as $post): ?>
         <article class="posts">
             <h2> <?php echo $post['title']; ?> </h2>
             <p> <?php echo $post['id']; ?></p>
@@ -46,22 +46,23 @@ $posts = editPost($_GET['id']);
         <h2>Title</h2>
         <div class="form-group">
             <label for="title">Title:</label>
-            <input class="form-control" type="text" name="title" id="title">
+            <input class="form-control" type="text" name="title" id="title" required>
         </div>
 
         <h2>Image</h2>
         <div class="form-group">
             <label for="image">Image:</label>
-            <input type="file" accept=".png, .jpg, .jpeg" name="image" id="image">
+            <input type="file" accept=".png, .jpg, .jpeg" name="image" id="image" required>
         </div>
 
         <h2>Description</h2>
         <div class="form-group">
             <label for="content">Description:</label>
-            <textarea class="form-control" name="content" id="content" maxlength="100"></textarea>
+            <textarea class="form-control" name="content" id="content" maxlength="100" required></textarea>
         </div>
 
         <button type="submit">Save changes</button>
+        <a href="<?php echo "app/posts/delete.php?id=".$post['id']; ?>"><button>Delete post</button></a>
     </form>
 
 </article>
