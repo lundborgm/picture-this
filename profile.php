@@ -21,6 +21,8 @@ $biography = $user['biography'];
         <img class="avatar" src="<?php echo "uploads/avatar/".$avatar ?>" alt="">
 
         <a href="editprofile.php"><button>Edit profile</button></a>
+
+        <a href="newpost.php"><button>New post</button></a>
 </article>
 
 <?php require __DIR__.'/views/footer.php'; ?>
