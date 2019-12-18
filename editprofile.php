@@ -2,27 +2,15 @@
 
 require __DIR__.'/views/header.php';
 
-if (!isset($_SESSION['user'])) {
+if (!loggedIn()) {
     redirect('/');
 }
 
-if (isset($_SESSION['messages'])) {
-    foreach ($_SESSION['messages'] as $message) {
-        echo $message;
+displayMessage();
 
-        unset($_SESSION['messages']);
-    }
-}
+displayError();
 
-if (isset($_SESSION['errors'])) {
-    foreach ($_SESSION['errors'] as $error) {
-        echo $error;
-
-        unset($_SESSION['errors']);
-    }
-}
-
-$user = getUserById($_SESSION['user']['id']);
+$user = getUserById($_SESSION['user']['id'], $pdo);
 $avatar = $user['avatar_image'];
 $biography = $user['biography'];
 

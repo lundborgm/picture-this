@@ -2,13 +2,7 @@
 
 require __DIR__.'/views/header.php';
 
-if (isset($_SESSION['errors'])) {
-    foreach ($_SESSION['errors'] as $error) {
-        echo $error;
-
-        unset($_SESSION['errors']);
-    }
-}
+displayError();
 
 ?>
 

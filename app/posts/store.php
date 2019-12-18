@@ -11,8 +11,11 @@ if (isset($_POST['title'], $_FILES['image'], $_POST['content'])) {
     $content = filter_var( $_POST['content'], FILTER_SANITIZE_STRING);
     $image = $_FILES['image'];
     $imageName = $image['name'];
-    $date = date('ymd');
-    $uploadedImage = $date.'-'.$imageName;
+
+    date_default_timezone_set('Europe/Stockholm');
+    $date = date('Y/m/d H:i');
+
+    // $uploadedImage = $date.'-'.$imageName;
 
     if ($image['type'] !== 'image/png') {
         $_SESSION['errors'] = ["The image file type is not allowed."];
@@ -23,7 +26,7 @@ if (isset($_POST['title'], $_FILES['image'], $_POST['content'])) {
     }
 
     else {
-        $destination = __DIR__.'/../../uploads/'.$uploadedImage;
+        $destination = __DIR__.'/../../uploads/'.$imageName;
 
         move_uploaded_file($image['tmp_name'], $destination);
 
@@ -41,7 +44,7 @@ if (isset($_POST['title'], $_FILES['image'], $_POST['content'])) {
             ':title' => $title,
             ':content' => $content,
             ':author_id' => $authorId,
-            ':image' => $uploadedImage,
+            ':image' => $imageName,
             ':date' => $date
             ]);
     }

@@ -3,15 +3,19 @@
 require __DIR__.'/views/header.php';
 
 // If you're not logged in you'll be redirected
-if (!isset($_SESSION['user'])) {
+if (!loggedIn()) {
     redirect('/');
 }
 
-$user = getUserById($_SESSION['user']['id']);
+displayError();
+
+displayMessage();
+
+$user = getUserById($_SESSION['user']['id'], $pdo);
 $avatar = $user['avatar_image'];
 $biography = $user['biography'];
 
-$posts = getPostById($_SESSION['user']['id']);
+$posts = getPostById($_SESSION['user']['id'], $pdo);
 
 ?>
 

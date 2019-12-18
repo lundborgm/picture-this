@@ -18,19 +18,57 @@ if (!function_exists('redirect')) {
 }
 
 /**
+ * Check if user is logged in using SESSION
+ *
+ * @return boolean
+ */
+function loggedIn(): bool
+{
+    return isset($_SESSION['user']);
+}
+
+/**
+ *
+ *
+ */
+function displayError()
+{
+    if (isset($_SESSION['errors'])) {
+        foreach ($_SESSION['errors'] as $error) {
+            echo $error;
+
+            unset($_SESSION['errors']);
+        }
+    }
+}
+
+/**
+ *
+ *
+ */
+function displayMessage()
+{
+    if (isset($_SESSION['messages'])) {
+        foreach ($_SESSION['messages'] as $message) {
+            echo $message;
+
+            unset($_SESSION['messages']);
+        }
+    }
+}
+
+/**
  * Get user from the database
  *
  * @param integer $userId
  *
- * @param string $dbPath
+ * @param PDO $pdo
  *
  * @return array
  */
-function getUserById(int $userId, string $dbPath = 'sqlite:app/database/database.db'): array
+function getUserById(int $userId, PDO $pdo): array
 {
-    $pdo = new PDO($dbPath);
-    $query = 'SELECT * FROM users WHERE id = :id';
-    $statement = $pdo->prepare($query);
+    $statement = $pdo->prepare('SELECT id, name, email, biography, avatar_image FROM users WHERE id = :id');
 
     if (!$statement) {
         die(var_dump($pdo->errorInfo()));
@@ -49,15 +87,13 @@ function getUserById(int $userId, string $dbPath = 'sqlite:app/database/database
  *
  * @param integer $authorId
  *
- * @param string $dbPath
+ * @param PDO $pdo
  *
  * @return array
  */
-function getPostById(int $authorId, string $dbPath = 'sqlite:app/database/database.db'): array
+function getPostById(int $authorId, PDO $pdo): array
 {
-    $pdo = new PDO($dbPath);
-    $query = 'SELECT * FROM posts WHERE author_id = :author_id';
-    $statement = $pdo->prepare($query);
+    $statement = $pdo->prepare('SELECT * FROM posts WHERE author_id = :author_id ORDER BY date DESC');
 
     if (!$statement) {
         die(var_dump($pdo->errorInfo()));
@@ -76,15 +112,13 @@ function getPostById(int $authorId, string $dbPath = 'sqlite:app/database/databa
  *
  * @param integer $postId
  *
- * @param string $dbPath
+ * @param PDO $pdo
  *
  * @return array
  */
-function editPost(int $postId, string $dbPath = 'sqlite:app/database/database.db'): array
+function editPost(int $postId, PDO $pdo): array
 {
-    $pdo = new PDO($dbPath);
-    $query = 'SELECT * FROM posts WHERE id = :id';
-    $statement = $pdo->prepare($query);
+    $statement = $pdo->prepare('SELECT * FROM posts WHERE id = :id');
 
     if (!$statement) {
         die(var_dump($pdo->errorInfo()));
@@ -101,15 +135,13 @@ function editPost(int $postId, string $dbPath = 'sqlite:app/database/database.db
 /**
  * Get all posts from the database
  *
- * @param string $dbPath
+ * @param PDO $pdo
  *
  * @return array
  */
-function getAllPosts(string $dbPath = 'sqlite:app/database/database.db'): array
+function getAllPosts(PDO $pdo): array
 {
-    $pdo = new PDO($dbPath);
-    $query = 'SELECT * FROM posts INNER JOIN users ON users.id = posts.author_id ORDER BY date DESC';
-    $statement = $pdo->prepare($query);
+    $statement = $pdo->prepare('SELECT * FROM posts INNER JOIN users ON users.id = posts.author_id ORDER BY date DESC');
 
     if (!$statement) {
         die(var_dump($pdo->errorInfo()));
@@ -117,6 +149,6 @@ function getAllPosts(string $dbPath = 'sqlite:app/database/database.db'): array
 
     $statement->execute();
 
-    $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
-    return $posts;
+    $allPosts = $statement->fetchAll(PDO::FETCH_ASSOC);
+    return $allPosts;
 }

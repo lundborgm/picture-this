@@ -3,25 +3,13 @@
 require __DIR__.'/views/header.php';
 
 // If you're not logged in you'll be redirected
-if (!isset($_SESSION['user'])) {
+if (!loggedIn()) {
     redirect('/');
 }
 
-if (isset($_SESSION['messages'])) {
-    foreach ($_SESSION['messages'] as $message) {
-        echo $message;
+displayMessage();
 
-        unset($_SESSION['messages']);
-    }
-}
-
-if (isset($_SESSION['errors'])) {
-    foreach ($_SESSION['errors'] as $error) {
-        echo $error;
-
-        unset($_SESSION['errors']);
-    }
-}
+displayError();
 
 ?>
 

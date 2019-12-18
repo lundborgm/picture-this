@@ -2,7 +2,7 @@
 
 require __DIR__.'/views/header.php';
 
-$posts = getAllPosts();
+$allPosts = getAllPosts($pdo);
 
 ?>
 
@@ -13,7 +13,7 @@ $posts = getAllPosts();
     <?php if (isset($_SESSION['user'])): ?>
         <p>Welcome, <?php echo $_SESSION['user']['name']; ?>!</p>
 
-        <?php foreach ($posts as $post): ?>
+        <?php foreach ($allPosts as $post): ?>
         <article class="posts">
             <h2> <?php echo $post['title']; ?> </h2>
             <img class="post-image" src="<?php echo "uploads/".$post['image']; ?>" alt="">

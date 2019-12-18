@@ -2,29 +2,17 @@
 
 require __DIR__.'/views/header.php';
 
-if (!isset($_SESSION['user'])) {
+if (!loggedIn()) {
     redirect('/');
 }
 
-if (isset($_SESSION['messages'])) {
-    foreach ($_SESSION['messages'] as $message) {
-        echo $message;
+displayMessage();
 
-        unset($_SESSION['messages']);
-    }
-}
+displayError();
 
-if (isset($_SESSION['errors'])) {
-    foreach ($_SESSION['errors'] as $error) {
-        echo $error;
+$user = getUserById($_SESSION['user']['id'], $pdo);
 
-        unset($_SESSION['errors']);
-    }
-}
-
-$user = getUserById($_SESSION['user']['id']);
-
-$posts = editPost($_GET['id']);
+$posts = editPost($_GET['id'], $pdo);
 
 ?>
 
@@ -62,7 +50,10 @@ $posts = editPost($_GET['id']);
         </div>
 
         <button type="submit">Save changes</button>
-        <a href="<?php echo "app/posts/delete.php?id=".$post['id']; ?>"><button>Delete post</button></a>
+    </form>
+
+    <form action="<?php echo "app/posts/delete.php?id=".$post['id']."&author_id=".$post['author_id']; ?>" method="post">
+    <button type="submit">Delete post</button>
     </form>
 
 </article>
