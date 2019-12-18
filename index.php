@@ -21,6 +21,7 @@ $allPosts = getAllPosts($pdo);
                 <p> <?php echo $post['content']; ?> </p>
                 <small> <?php echo "Posted by: ".$post['name']; ?></small>
                 <small> <?php echo "Published: ".$post['date']; ?></small>
+                <small>Likes: 0</small><button class="like-btn"><img class="like-img" src="/assets/icons/star.png" alt=""></button>
             </div>
         <?php endforeach; ?>
         <?php endif; ?>
