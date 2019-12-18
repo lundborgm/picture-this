@@ -59,13 +59,15 @@ button {
   border-radius: 10px;
 }
 
-.like-btn {
+/* .like-btn {
   width: 40px;
   border: none;
-}
+} */
 
 .like-img {
-  width: 100%;
+  width: 30px;
+  cursor: pointer;
+  margin: 0 0 20px 0;
 }
 
 small {
@@ -89,6 +91,7 @@ h2 {
 
 .post-image {
   width: 100%;
+  padding: 10px 0;
 }
 
 .profile-posts {

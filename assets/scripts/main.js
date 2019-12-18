@@ -1,14 +1,16 @@
 "use strict";
 
-const likeBtns = document.querySelectorAll(".like-btn");
-
-likeBtns.forEach(likeBtn => {
-  likeBtn.addEventListener("click", toggleImage);
-});
+// Like posts
+let likeImgs = document.querySelectorAll(".like-img");
 
 function toggleImage() {
-  let liked = "/assets/icons/filledstar.png";
-  let likeImg = document.querySelector(".like-img");
-
-  likeImg.src = liked;
+  if ((this.src = "/assets/icons/star.png")) {
+    let liked = "/assets/icons/filledstar.png";
+    this.src = liked;
+    console.log(this);
+  }
 }
+
+likeImgs.forEach(likeImg => {
+  likeImg.addEventListener("click", toggleImage);
+});
