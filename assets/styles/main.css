@@ -26,8 +26,29 @@ nav ul li {
   padding: 0 10px;
 }
 
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-page {
+  background-color: rgb(228, 232, 255);
+}
+
 article {
   margin: 0 20px 0 20px;
+}
+
+.post-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(231, 231, 231);
+  margin: 20px 0 0 0;
 }
 
 button {
@@ -58,13 +79,30 @@ h2 {
 }
 
 .post-image {
-  width: 200px;
+  width: 100%;
 }
 
-.posts {
-  display: flex;
-  flex-direction: column;
+.profile-posts {
+  width: 100%;
   border: 1px solid black;
-  margin: 0 0 20px 0;
+  margin: 10px 0;
   padding: 10px;
+}
+
+@media screen and (min-width: 450px) {
+  .post-wrapper {
+    width: 60%;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .post-wrapper {
+    width: 50%;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .post-wrapper {
+    width: 40%;
+  }
 }
