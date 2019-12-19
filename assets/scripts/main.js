@@ -1,26 +1,35 @@
 "use strict";
 
 // Like posts
-let likeImgs = document.querySelectorAll(".like-img");
-let url = "/app/posts/likes.php";
-let formData = new formData();
+// const likeImgs = document.querySelectorAll(".like-img");
+// const likeForm = document.querySelector(".like-form");
+// const url = "/app/posts/likes.php";
 
-function toggleImage() {
-  if ((this.src = "/assets/icons/star.png")) {
-    let liked = "/assets/icons/filledstar.png";
-    this.src = liked;
-    console.log(this);
-  }
-}
+// console.log(likeForm);
 
-likeImgs.forEach(likeImg => {
-  likeImg.addEventListener("click", toggleImage);
-  console.log(likeImg.dataset.id);
-});
+// function toggleImage() {
+//   if ((this.src = "/assets/icons/star.png")) {
+//     let liked = "/assets/icons/filledstar.png";
+//     this.src = liked;
+//     console.log(this);
+//   }
+// }
 
-fetch(url, {
-  method: "POST",
-  body: formData
-})
-  .then(response => response.json())
-  .then(likes => {});
+// likeImgs.forEach(likeImg => {
+//   likeImg.addEventListener("click", toggleImage);
+//   console.log(likeImg.dataset.id);
+// });
+
+// likeForm.addEventListener("submit", function(e) {
+//   e.preventDefault();
+
+//   const formData = new FormData(this);
+
+//   fetch(url, {
+//     method: "POST",
+//     body: formData
+//   })
+//     .then(response => response.json())
+//     .then(likes => {});
+// });
+

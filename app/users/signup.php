@@ -33,6 +33,10 @@ if (isset($_POST['email'], $_POST['name'], $_POST['password'])) {
     $query = 'INSERT INTO users (name, email, password) VALUES (:name, :email, :password)';
     $statement = $pdo->prepare($query);
 
+    if (!$statement) {
+        die(var_dump($pdo->errorInfo()));
+    }
+
     $statement->execute([
         ':name' => $name,
         ':email' => $email,
@@ -41,8 +45,5 @@ if (isset($_POST['email'], $_POST['name'], $_POST['password'])) {
 
     }
 
-    if (!$statement) {
-        die(var_dump($pdo->errorInfo()));
-    }
 
 redirect('/');

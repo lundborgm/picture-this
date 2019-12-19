@@ -141,7 +141,7 @@ function editPost(int $postId, PDO $pdo): array
  */
 function getAllPosts(PDO $pdo): array
 {
-    $statement = $pdo->prepare('SELECT * FROM posts INNER JOIN users ON users.id = posts.author_id ORDER BY date DESC');
+    $statement = $pdo->prepare('SELECT posts.*, users.name FROM posts INNER JOIN users WHERE author_id = users.id ORDER BY date DESC');
 
     if (!$statement) {
         die(var_dump($pdo->errorInfo()));

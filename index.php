@@ -22,8 +22,9 @@ $allPosts = getAllPosts($pdo);
                 <small> <?php echo "Posted by: ".$post['name']; ?></small>
                 <small> <?php echo "Published: ".$post['date']; ?></small>
                 <small>Likes: 0</small>
-                <form action="/app/posts/likes.php" method="post">
-                    <button type="submit">Like</button>
+                <form class="like-form" action="/app/posts/likes.php" method="post">
+                    <input type="hidden" name="like" id="like" value=" <?= $post['id'] ?>">
+                    <button class="like-btn" type="submit">Like</button>
                 </form>
             </div>
         <?php endforeach; ?>
