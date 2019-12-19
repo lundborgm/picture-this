@@ -2,6 +2,8 @@
 
 // Like posts
 let likeImgs = document.querySelectorAll(".like-img");
+let url = "/app/posts/likes.php";
+let formData = new formData();
 
 function toggleImage() {
   if ((this.src = "/assets/icons/star.png")) {
@@ -13,4 +15,12 @@ function toggleImage() {
 
 likeImgs.forEach(likeImg => {
   likeImg.addEventListener("click", toggleImage);
+  console.log(likeImg.dataset.id);
 });
+
+fetch(url, {
+  method: "POST",
+  body: formData
+})
+  .then(response => response.json())
+  .then(likes => {});

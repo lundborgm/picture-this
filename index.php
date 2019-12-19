@@ -18,16 +18,20 @@ $allPosts = getAllPosts($pdo);
             <div class="profile-posts">
                 <h2> <?php echo $post['title']; ?> </h2>
                 <img class="post-image" src="<?php echo "uploads/".$post['image']; ?>" alt="">
-                <!-- <button class="like-btn"> -->
-                <img class="like-img" src="/assets/icons/star.png" alt="">
-                <!-- </button> -->
                 <p> <?php echo $post['content']; ?> </p>
                 <small> <?php echo "Posted by: ".$post['name']; ?></small>
                 <small> <?php echo "Published: ".$post['date']; ?></small>
                 <small>Likes: 0</small>
+                <form action="/app/posts/likes.php" method="post">
+                    <button type="submit">Like</button>
+                </form>
             </div>
         <?php endforeach; ?>
         <?php endif; ?>
     </div>
 
+    <!-- <i class="far fa-heart"></i> -->
+    <!-- <button class="like-btn"> -->
+    <!-- <img class="like-img" src="/assets/icons/star.png" alt="star" data-id="<?php echo $post['id']?>"> -->
+    <!-- </button> -->
 <?php require __DIR__.'/views/footer.php'; ?>
