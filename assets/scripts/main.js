@@ -1,9 +1,9 @@
 "use strict";
 
 // Like posts
-// const likeImgs = document.querySelectorAll(".like-img");
-// const likeForm = document.querySelector(".like-form");
-// const url = "/app/posts/likes.php";
+const likeImgs = document.querySelectorAll(".like-img");
+const likeForm = document.querySelector(".like-form");
+const url = "/app/posts/likes.php";
 
 // console.log(likeForm);
 
@@ -29,7 +29,10 @@
 //     method: "POST",
 //     body: formData
 //   })
-//     .then(response => response.json())
-//     .then(likes => {});
+//     .then(response => {
+//       return response.json();
+//     })
+//     .then(json => {
+//       console.log("hello");
+//     });
 // });
-

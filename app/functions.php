@@ -152,3 +152,58 @@ function getAllPosts(PDO $pdo): array
     $allPosts = $statement->fetchAll(PDO::FETCH_ASSOC);
     return $allPosts;
 }
+
+/**
+ * Check for likes in the database
+ *
+ * @param integer $postId
+ *
+ * @param integer $userId
+ *
+ * @param PDO $pdo
+ *
+ * @return boolean
+ *
+ */
+function checkForLikes(int $postId, int $userId, PDO $pdo): bool
+{
+    $statement = $pdo->prepare('SELECT * FROM likes WHERE post_id = :post_id AND user_id = :user_id');
+
+    if (!$statement) {
+        die(var_dump($pdo->errorInfo()));
+    }
+
+    $statement->execute([
+        ':post_id' => $postId,
+        ':user_id' => $userId
+    ]);
+
+    $likes = $statement->fetch(PDO::FETCH_ASSOC);
+
+    if ($likes) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function showLikes(int $postId, PDO $pdo)
+{
+    $statement = $pdo->prepare('SELECT COUNT(*) FROM likes WHERE post_id = :post_id');
+
+    if (!$statement) {
+        die(var_dump($pdo->errorInfo()));
+    }
+
+    $statement->execute([
+        ':post_id' => $postId
+    ]);
+
+    $likes = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+    foreach ($likes as $like) {
+        return $like;
+    }
+
+
+}
