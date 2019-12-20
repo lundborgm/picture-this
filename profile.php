@@ -17,6 +17,7 @@ $biography = $user['biography'];
 
 $posts = getPostById($_SESSION['user']['id'], $pdo);
 
+
 ?>
 
     <div class="profile-page">

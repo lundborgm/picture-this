@@ -82,21 +82,6 @@ function getUserById(int $userId, PDO $pdo): array
     return $user;
 }
 
-// function getAvatar(int $authorId, PDO $pdo) {
-//     $statement = $pdo->prepare('SELECT avatar_image FROM users WHERE id = :id');
-
-//     if (!$statement) {
-//         die(var_dump($pdo->errorInfo()));
-//     }
-
-//     $statement->execute([
-//         ':id' => $authorId
-//     ]);
-
-//     $avatar = $statement->fetch(PDO::FETCH_ASSOC);
-//     return $avatar;
-// }
-
 /**
  * Get posts from the database
  *
