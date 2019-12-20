@@ -187,7 +187,7 @@ function checkForLikes(int $postId, int $userId, PDO $pdo): bool
     }
 }
 
-function showLikes(int $postId, PDO $pdo)
+function countLikes(int $postId, PDO $pdo)
 {
     $statement = $pdo->prepare('SELECT COUNT(*) FROM likes WHERE post_id = :post_id');
 
@@ -199,11 +199,8 @@ function showLikes(int $postId, PDO $pdo)
         ':post_id' => $postId
     ]);
 
-    $likes = $statement->fetchAll(PDO::FETCH_ASSOC);
+    $likes = $statement->fetch(PDO::FETCH_ASSOC);
 
-    foreach ($likes as $like) {
-        return $like;
-    }
-
+    return (int)$likes["COUNT(*)"];
 
 }

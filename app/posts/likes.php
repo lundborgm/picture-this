@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 require __DIR__.'/../autoload.php';
 
-
 if (isset($_POST['like'])) {
 
     $postId = (int)$_POST['like'];
@@ -40,7 +39,14 @@ if (isset($_POST['like'])) {
         ':post_id' => $postId,
         ':user_id' => $userId,
     ]);
+
     }
+
+    $likes = countLikes($postId, $pdo);
+    $likes = json_encode($likes);
+    header('Content-Type: application/json');
+    echo $likes;
 }
 
-redirect('/');
+
+// redirect('/');

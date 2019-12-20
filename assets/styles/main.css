@@ -55,19 +55,23 @@ button {
   font-size: 14px;
   padding: 4px 8px;
   margin: 5px 0;
-  border: 1px solid black;
-  border-radius: 10px;
-}
-
-.like-btn {
-  width: 40px;
   border: none;
+  border-radius: 10px;
+  cursor: pointer;
 }
 
-.like-img {
+/* .like-btn {
+  border: none;
+}  */
+
+/* .like-img {
   width: 100%;
   cursor: pointer;
   margin: 0;
+} */
+
+.fa-star {
+  color: rgb(53, 53, 53);
 }
 
 small {
