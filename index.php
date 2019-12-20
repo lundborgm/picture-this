@@ -4,6 +4,7 @@ require __DIR__.'/views/header.php';
 
 $allPosts = getAllPosts($pdo);
 
+
 ?>
 
     <div class="profile-page">
@@ -18,16 +19,22 @@ $allPosts = getAllPosts($pdo);
             <div class="profile-posts">
                 <?php $likes = countLikes($post['id'], $pdo) ?>
 
-                <h2> <?php echo $post['title']; ?> </h2>
+                <!-- <h2> <?php echo $post['title']; ?> </h2> -->
+                <div class="post-header">
+                    <img class="post-avatar" src="<?php echo "uploads/avatar/".$post['avatar_image']; ?>" alt="">
+                    <h3> <?php echo $post['name']; ?> </h3>
+                </div>
+
                 <img class="post-image" src="<?php echo "uploads/".$post['image']; ?>" alt="">
-                <p> <?php echo $post['content']; ?> </p>
-                <small> <?php echo "Posted by: ".$post['name']; ?></small>
-                <small> <?php echo "Published: ".$post['date']; ?></small>
-                <p>Likes: <?php echo $likes; ?></p>
                 <form class="like-form" action="/app/posts/likes.php" method="post">
-                    <input type="hidden" name="like" id="like" value=" <?= $post['id'] ?>">
-                    <button class="like-btn" type="submit"><i class="far fa-star fa-2x"></i></button>
+                <input type="hidden" name="like" id="like" value=" <?= $post['id'] ?>">
+                <button class="like-btn" type="submit"><i class="far fa-star fa-2x"></i></button>
+                <p>Likes: <?php echo $likes; ?></p>
                 </form>
+                <div class="content">
+                    <p><span class="name"><?php echo $post['name']; ?></span> <?php echo $post['content']; ?></p>
+                    <small> <?php echo "Published: ".$post['date']; ?></small>
+                </div>
 
             </div>
         <?php endforeach; ?>

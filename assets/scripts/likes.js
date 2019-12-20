@@ -28,7 +28,13 @@ forms.forEach(form => {
       method: "POST",
       body: formData
     })
-      .then(response => response.json())
-      .then(json => {});
+      .then(response => {
+        // Take the response Promise and return it as JSON.
+        return response.json();
+      })
+      .then(json => {
+        // Now it is possible to use the JSON as a normal object.
+        console.log(json);
+      });
   });
 });
