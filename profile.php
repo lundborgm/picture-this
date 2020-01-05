@@ -25,7 +25,11 @@ $posts = getPostById($_SESSION['user']['id'], $pdo);
         <p>Hello, <?php echo $_SESSION['user']['name']; ?>. This is your profile.</p>
         <h2>Biography</h2>
         <p><?php echo $biography; ?></p>
-        <img class="avatar" src="<?php echo "uploads/avatar/".$avatar; ?>" alt="">
+        <?php if (!$avatar): ?>
+            <img class="avatar" src="uploads/avatar/avatar.png" alt="">
+        <?php else: ?>
+            <img class="avatar" src="<?php echo "uploads/avatar/".$avatar; ?>" alt="">
+        <?php endif; ?>
 
         <a href="editprofile.php"><button>Edit profile</button></a>
 

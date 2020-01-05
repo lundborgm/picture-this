@@ -37,7 +37,12 @@ forms.forEach(form => {
         const likes = e.target.querySelector(".likes");
 
         console.log(json);
-        likes.textContent = json;
+
+        if (json === 0) {
+          likes.textContent = " ";
+        } else {
+          likes.textContent = json;
+        }
       });
   });
 });

@@ -35,7 +35,11 @@ $allPosts = getAllPosts($pdo);
                         <i class="fa-star fa-2x far"></i>
                     <?php endif; ?>
                 </button>
-                <p class="likes"><?php echo $likes; ?></p>
+                <p class="likes"><?php if ($likes === 0): ?>
+                    <?php echo '' ?>
+                    <?php else: ?>
+                    <?php echo $likes; ?>
+                    <?php endif; ?></p>
                 </form>
                 <div class="content">
                     <p><span class="name"><?php echo $post['name']; ?></span> <?php echo $post['content']; ?></p>
