@@ -28,7 +28,10 @@ $posts = getPostById($authorId, $pdo);
         <p><?php echo $user['biography']; ?></p>
         <img class="avatar" src="<?php echo "uploads/avatar/".$user['avatar_image']; ?>" alt="">
 
-        <a href=""><button>Follow</button></a>
+        <form class="follow-form" action="/app/users/follow.php" method="post">
+            <input type="hidden" name="follow" id="follow" value=" <?= $user['id'] ?>">
+            <button class="follow-btn" type="submit">Follow</button>
+        </form>
     </div>
 
     <div class="post-wrapper">
@@ -45,8 +48,18 @@ $posts = getPostById($authorId, $pdo);
                 <img class="post-image" src="<?php echo "uploads/".$post['image']; ?>" alt="">
                 <form class="like-form" action="/app/posts/likes.php" method="post">
                 <input type="hidden" name="like" id="like" value=" <?= $post['id'] ?>">
-                <button class="like-btn" type="submit"><i class="far fa-star fa-2x"></i></button>
-                <p><?php echo $likes; ?> likes</p>
+                <button class="like-btn" type="submit">
+                    <?php if (checkForLikes($post['id'], $_SESSION['user']['id'], $pdo)): ?>
+                        <i class="fa-star fa-2x fas"></i>
+                    <?php else: ?>
+                        <i class="fa-star fa-2x far"></i>
+                    <?php endif; ?>
+                </button>
+                <p class="likes"><?php if ($likes === 0): ?>
+                    <?php echo '' ?>
+                    <?php else: ?>
+                    <?php echo $likes; ?>
+                    <?php endif; ?></p>
                 </form>
                 <div class="content">
                     <p><span class="name"><?php echo $user['name']; ?></span> <?php echo $post['content']; ?></p>
