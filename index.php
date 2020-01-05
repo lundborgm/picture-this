@@ -45,6 +45,11 @@ $allPosts = getAllPosts($pdo);
                     <p><span class="name"><?php echo $post['name']; ?></span> <?php echo $post['content']; ?></p>
                     <small> <?php echo "Published: ".$post['date']; ?></small>
                 </div>
+                <form class="comment-form" action="/app/posts/comments.php" method="post">
+                    <input type="text" name="comment" id="comment" value="">
+                    <input type="hidden" name="post-id" id="post-id" value=" <?= $post['id'] ?>">
+                    <button class="send" type="submit">Send</button>
+                </form>
 
             </div>
         <?php endforeach; ?>
