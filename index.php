@@ -28,8 +28,14 @@ $allPosts = getAllPosts($pdo);
                 <img class="post-image" src="<?php echo "uploads/".$post['image']; ?>" alt="">
                 <form class="like-form" action="/app/posts/likes.php" method="post">
                 <input type="hidden" name="like" id="like" value=" <?= $post['id'] ?>">
-                <button class="like-btn" type="submit"><i class="far fa-star fa-2x"></i></button>
-                <p><?php echo $likes; ?> likes</p>
+                <button class="like-btn" type="submit">
+                    <?php if (checkForLikes($post['id'], $_SESSION['user']['id'], $pdo)): ?>
+                        <i class="fa-star fa-2x fas"></i>
+                    <?php else: ?>
+                        <i class="fa-star fa-2x far"></i>
+                    <?php endif; ?>
+                </button>
+                <p class="likes"><?php echo $likes; ?></p>
                 </form>
                 <div class="content">
                     <p><span class="name"><?php echo $post['name']; ?></span> <?php echo $post['content']; ?></p>

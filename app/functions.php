@@ -202,5 +202,5 @@ function countLikes(int $postId, PDO $pdo)
     $likes = $statement->fetch(PDO::FETCH_ASSOC);
 
     return (int)$likes["COUNT(*)"];
-
 }
+

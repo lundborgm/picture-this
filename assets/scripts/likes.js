@@ -1,17 +1,17 @@
 "use strict";
 
 const buttons = document.querySelectorAll(".like-btn");
-const stars = document.querySelectorAll(".fa-star");
 const forms = document.querySelectorAll(".like-form");
+const stars = document.querySelectorAll(".fa-star");
 const url = "http://localhost:8000/app/posts/likes.php";
 
 function toggleStar() {
   if (this.classList.contains("far")) {
-    this.classList.add("fas");
     this.classList.remove("far");
+    this.classList.add("fas");
   } else {
-    this.classList.add("far");
     this.classList.remove("fas");
+    this.classList.add("far");
   }
 }
 
@@ -34,7 +34,10 @@ forms.forEach(form => {
       })
       .then(json => {
         // Now it is possible to use the JSON as a normal object.
+        const likes = e.target.querySelector(".likes");
+
         console.log(json);
+        likes.textContent = json;
       });
   });
 });
