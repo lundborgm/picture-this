@@ -187,6 +187,10 @@ function checkForLikes(int $postId, int $userId, PDO $pdo): bool
     }
 }
 
+/**
+ *
+ *
+ */
 function countLikes(int $postId, PDO $pdo)
 {
     $statement = $pdo->prepare('SELECT COUNT(*) FROM likes WHERE post_id = :post_id');
@@ -204,3 +208,50 @@ function countLikes(int $postId, PDO $pdo)
     return (int)$likes["COUNT(*)"];
 }
 
+/**
+ *
+ *
+ */
+function checkIfFollowing(int $userId, int $follow ,PDO $pdo): bool
+{
+    $statement = $pdo->prepare('SELECT * FROM follow WHERE user_id = :user_id AND following = :following');
+
+    if (!$statement) {
+        die(var_dump($pdo->errorInfo()));
+    }
+
+    $statement->execute([
+        ':user_id' => $userId,
+        ':following' => $follow
+    ]);
+
+    $follow = $statement->fetch(PDO::FETCH_ASSOC);
+
+    if ($follow) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+/**
+ *
+ *
+ */
+function countFollows(int $userId, int $follow ,PDO $pdo)
+{
+    $statement = $pdo->prepare('SELECT COUNT(*) FROM follow WHERE user_id = :user_id AND following = :following');
+
+    if (!$statement) {
+        die(var_dump($pdo->errorInfo()));
+    }
+
+    $statement->execute([
+        ':user_id' => $userId,
+        ':following' => $follow
+    ]);
+
+    $follow = $statement->fetch(PDO::FETCH_ASSOC);
+
+    return (int)$follow["COUNT(*)"];
+}
