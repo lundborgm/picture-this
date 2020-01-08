@@ -238,7 +238,7 @@ function checkIfFollowing(int $userId, int $follow ,PDO $pdo): bool
  *
  *
  */
-function countFollowers(int $follow, PDO $pdo)
+function countFollowers(int $follow, PDO $pdo): int
 {
     $statement = $pdo->prepare('SELECT COUNT(*) FROM follow WHERE following = :following');
 
@@ -259,7 +259,7 @@ function countFollowers(int $follow, PDO $pdo)
  *
  *
  */
-function countFollowing(int $userId, PDO $pdo)
+function countFollowing(int $userId, PDO $pdo): int
 {
     $statement = $pdo->prepare('SELECT COUNT(*) FROM follow WHERE user_id = :user_id');
 
@@ -280,7 +280,7 @@ function countFollowing(int $userId, PDO $pdo)
  *
  *
  */
-function displayFollowersName(int $follow, PDO $pdo)
+function displayFollowersName(int $follow, PDO $pdo): array
 {
     $statement = $pdo->prepare('SELECT * FROM follow INNER JOIN users on user_id = users.id WHERE following = :following');
 
@@ -301,7 +301,7 @@ function displayFollowersName(int $follow, PDO $pdo)
  *
  *
  */
-function displayFollowingList(int $userId, PDO $pdo)
+function displayFollowingList(int $userId, PDO $pdo): array
 {
     $statement = $pdo->prepare('SELECT * FROM follow INNER JOIN users on following = users.id WHERE user_id = :user_id');
 
@@ -317,6 +317,3 @@ function displayFollowingList(int $userId, PDO $pdo)
 
     return $names;
 }
-
-// 14 carl, vilka följer han?
-// följer 13 och 15 (michaela, yrgo)
