@@ -13,17 +13,11 @@ displayError();
 
 $allPosts = getAllPosts($pdo);
 
-$authorId = intval($_GET['id']);
+$authorId = (int)$_GET['id'];
 
 $user = getUserById($authorId, $pdo);
 
 $posts = getPostById($authorId, $pdo);
-
-
-
-
-
-
 
 ?>
 
@@ -35,6 +29,7 @@ $posts = getPostById($authorId, $pdo);
 
         <?php $followers = countFollowers($authorId, $pdo); ?>
         <?php $following = countFollowing($authorId, $pdo); ?>
+
         <form class="follow-form" action="/app/users/follow.php" method="post">
             <input type="hidden" name="follow" id="follow" value=" <?= $user['id'] ?>">
             <button class="follow-btn" type="submit">
@@ -45,8 +40,10 @@ $posts = getPostById($authorId, $pdo);
                     <?php endif; ?>
                 </button>
         </form>
-        <h3>Followers: <span class="followers"><?php echo $followers; ?></span></h3>
-        <h3>Following: <span class="following"><?php echo $following; ?></span></h3>
+        <a href="<?php echo "followers.php?id=".$authorId; ?>">Followers: <span class="followers"><?php echo $followers; ?></span></a>
+        <a href="<?php echo "following.php?id=".$authorId; ?>">Following: <span class="followers"><?php echo $following; ?></span></a>
+
+        <!-- <h3>Following: <span class="following"><?php echo $following; ?></span></h3> -->
     </div>
 
     <div class="post-wrapper">

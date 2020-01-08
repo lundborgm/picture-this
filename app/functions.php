@@ -238,28 +238,6 @@ function checkIfFollowing(int $userId, int $follow ,PDO $pdo): bool
  *
  *
  */
-function countFollows(int $userId, int $follow ,PDO $pdo)
-{
-    $statement = $pdo->prepare('SELECT COUNT(*) FROM follow WHERE user_id = :user_id AND following = :following');
-
-    if (!$statement) {
-        die(var_dump($pdo->errorInfo()));
-    }
-
-    $statement->execute([
-        ':user_id' => $userId,
-        ':following' => $follow
-    ]);
-
-    $follow = $statement->fetch(PDO::FETCH_ASSOC);
-
-    return (int)$follow["COUNT(*)"];
-}
-
-/**
- *
- *
- */
 function countFollowers(int $follow, PDO $pdo)
 {
     $statement = $pdo->prepare('SELECT COUNT(*) FROM follow WHERE following = :following');
@@ -297,3 +275,48 @@ function countFollowing(int $userId, PDO $pdo)
 
     return (int)$following["COUNT(*)"];
 }
+
+/**
+ *
+ *
+ */
+function displayFollowersName(int $follow, PDO $pdo)
+{
+    $statement = $pdo->prepare('SELECT * FROM follow INNER JOIN users on user_id = users.id WHERE following = :following');
+
+    if (!$statement) {
+        die(var_dump($pdo->errorInfo()));
+    }
+
+    $statement->execute([
+        ':following' => $follow
+    ]);
+
+    $names = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+    return $names;
+}
+
+/**
+ *
+ *
+ */
+function displayFollowingList(int $userId, PDO $pdo)
+{
+    $statement = $pdo->prepare('SELECT * FROM follow INNER JOIN users on following = users.id WHERE user_id = :user_id');
+
+    if (!$statement) {
+        die(var_dump($pdo->errorInfo()));
+    }
+
+    $statement->execute([
+        ':user_id' => $userId
+    ]);
+
+    $names = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+    return $names;
+}
+
+// 14 carl, vilka följer han?
+// följer 13 och 15 (michaela, yrgo)
