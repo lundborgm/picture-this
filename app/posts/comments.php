@@ -9,7 +9,7 @@ header('Content-Type: application/json');
 if (isset($_POST['comment'])) {
 
     $userId = $_SESSION['user']['id'];
-    $postId = $_POST['post-id'];
+    $postId = (int)$_POST['post-id'];
     $comment = $_POST['comment'];
 
     date_default_timezone_set('Europe/Stockholm');
@@ -30,6 +30,14 @@ if (isset($_POST['comment'])) {
         ':date' => $date
     ]);
 
+    $comments = ([
+        'comment' => $comment,
+
+    ]);
+
+    echo json_encode($comments);
+
+
 }
 
-redirect('/');
+// redirect('/');

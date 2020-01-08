@@ -317,3 +317,24 @@ function displayFollowingList(int $userId, PDO $pdo): array
 
     return $names;
 }
+
+/**
+ *
+ *
+ */
+function getComments(int $postId, PDO $pdo): array
+{
+    $statement = $pdo->prepare('SELECT comment FROM comments WHERE post_id = :post_id');
+
+    if (!$statement) {
+        die(var_dump($pdo->errorInfo()));
+    }
+
+    $statement->execute([
+        ':post_id' => $postId
+    ]);
+
+    $comments = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+    return $comments;
+}

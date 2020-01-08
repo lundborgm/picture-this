@@ -1,6 +1,6 @@
 "use strict";
 
-const buttons = document.querySelectorAll(".like-btn");
+// const buttons = document.querySelectorAll(".like-btn");
 const forms = document.querySelectorAll(".like-form");
 const stars = document.querySelectorAll(".fa-star");
 const url = "http://localhost:8000/app/posts/likes.php";
@@ -36,7 +36,7 @@ forms.forEach(form => {
         // Now it is possible to use the JSON as a normal object.
         const likes = e.target.querySelector(".likes");
 
-        console.log(json);
+        // console.log(json);
 
         if (json === 0) {
           likes.textContent = " ";
