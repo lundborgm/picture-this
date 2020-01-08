@@ -20,6 +20,8 @@ $user = getUserById($authorId, $pdo);
 $posts = getPostById($authorId, $pdo);
 
 
+
+
 ?>
 
 <div class="profile-page">
@@ -28,9 +30,16 @@ $posts = getPostById($authorId, $pdo);
         <p><?php echo $user['biography']; ?></p>
         <img class="avatar" src="<?php echo "uploads/avatar/".$user['avatar_image']; ?>" alt="">
 
+        <?php $follows = countFollows($user['id'], $authorId, $pdo); ?>
         <form class="follow-form" action="/app/users/follow.php" method="post">
             <input type="hidden" name="follow" id="follow" value=" <?= $user['id'] ?>">
-            <button class="follow-btn" type="submit">Follow</button>
+            <button class="follow-btn" type="submit">
+            <?php if (checkIfFollowing($_SESSION['user']['id'], $authorId, $pdo)): ?>
+                        Unfollow
+                    <?php else: ?>
+                        Follow
+                    <?php endif; ?>
+                </button>
         </form>
     </div>
 

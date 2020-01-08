@@ -43,9 +43,9 @@ if (isset($_POST['follow'])) {
     ]);
     }
 
-    $follow = countFollows($userId, $profileId, $pdo);
-    echo json_encode($follow);
+    $follows = countFollows($userId, $profileId, $pdo);
+    echo json_encode($follows);
 
 }
 
-redirect('/');
+// redirect('/');

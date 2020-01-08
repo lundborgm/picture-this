@@ -30,6 +30,8 @@ $posts = getPostById($_SESSION['user']['id'], $pdo);
         <?php else: ?>
             <img class="avatar" src="<?php echo "uploads/avatar/".$avatar; ?>" alt="">
         <?php endif; ?>
+        <h3>Followers: <span class="followers">0</span></h3>
+        <h3>Following: <span class="following">0</span></h3>
 
         <a href="editprofile.php"><button>Edit profile</button></a>
 
