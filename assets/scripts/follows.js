@@ -1,6 +1,5 @@
 "use strict";
 
-// const followers = document.querySelector(".followers");
 // const following = document.querySelector(".following");
 const form = document.querySelector(".follow-form");
 
@@ -20,8 +19,10 @@ if (form) {
         console.log(json);
 
         const followBtn = document.querySelector(".follow-btn");
+        const followers = document.querySelector(".followers");
+        followers.innerHTML = json.followers;
 
-        if (json === 0) {
+        if (json.isFollowing === false) {
           followBtn.innerHTML = "Follow";
         } else {
           followBtn.innerHTML = "Unfollow";

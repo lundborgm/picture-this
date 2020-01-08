@@ -43,8 +43,18 @@ if (isset($_POST['follow'])) {
     ]);
     }
 
-    $follows = countFollows($userId, $profileId, $pdo);
-    echo json_encode($follows);
+    // $follow = countFollows($userId, $profileId, $pdo);
+    // echo json_encode($follow);
+
+    $followers = countFollowers($profileId, $pdo);
+    $isFollowing = checkIfFollowing($userId, $profileId, $pdo);
+
+    $json = ([
+        'followers' => $followers,
+        'isFollowing' => $isFollowing
+    ]);
+
+    echo json_encode($json);
 
 }
 

@@ -255,3 +255,24 @@ function countFollows(int $userId, int $follow ,PDO $pdo)
 
     return (int)$follow["COUNT(*)"];
 }
+
+/**
+ *
+ *
+ */
+function countFollowers(int $follow, PDO $pdo)
+{
+    $statement = $pdo->prepare('SELECT COUNT(*) FROM follow WHERE following = :following');
+
+    if (!$statement) {
+        die(var_dump($pdo->errorInfo()));
+    }
+
+    $statement->execute([
+        ':following' => $follow
+    ]);
+
+    $followers = $statement->fetch(PDO::FETCH_ASSOC);
+
+    return (int)$followers["COUNT(*)"];
+}
