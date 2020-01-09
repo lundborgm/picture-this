@@ -1,10 +1,6 @@
 "use strict";
 
-// const buttons = document.querySelectorAll(".send");
 const commentForms = document.querySelectorAll(".comment-form");
-// const hej = document.querySelector(".comment");
-// const commentList = document.querySelector(".comment-list");
-// const comments = document.querySelectorAll(".comment");
 
 commentForms.forEach(form => {
   form.addEventListener("submit", e => {
@@ -22,11 +18,9 @@ commentForms.forEach(form => {
       .then(json => {
         // Now it is possible to use the JSON as a normal object.
         const newComment = json.comment;
-        const hej = e.target.querySelector(".comment");
+        const comment = e.target.querySelector(".comment");
 
-        hej.innerHTML = newComment;
-
-        console.log(hej);
+        comment.innerHTML = newComment;
 
         console.log(newComment);
       });
