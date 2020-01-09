@@ -1,6 +1,5 @@
-    <div class="add-post">
-    <button class="plus-btn"><i class="fas fa-plus fa-2x"></i></button>
-    </div>
+
+    <?php require __DIR__.'/bottomnavigation.php'; ?>
     </div><!-- /container -->
 
     <script src="/assets/scripts/likes.js"></script>
