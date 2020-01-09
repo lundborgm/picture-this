@@ -133,8 +133,16 @@ h2 {
 
 .comment-form {
   display: flex;
-  flex-direction: row;
-  align-items: center;
+  flex-direction: column;
+}
+
+/* .comment-list {
+
+} */
+
+.comment {
+  list-style: none;
+  margin: 0 10px;
 }
 
 input {

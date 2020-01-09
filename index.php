@@ -48,15 +48,18 @@ $allPosts = getAllPosts($pdo);
 
                 <?php $comments = getComments($post['id'], $pdo) ?>
                 <div class="comment-wrapper">
-                    <form class="comment-form" action="/app/posts/comments.php" method="post">
-                        <input type="text" name="comment" id="comment" value="">
-                        <input type="hidden" name="post-id" id="post-id" value=" <?= $post['id'] ?>">
-                        <button class="send" type="submit">Send</button>
-                        <ul class="comment-list">
-                            <?php foreach ($comments as $comment): ?>
-                                <li class="comment"><?php echo $comment['comment']; ?></li>
-                                <?php endforeach; ?>
-                            </ul>
+                    <ul class="comment-list">
+                        <?php foreach ($comments as $comment): ?>
+                            <li class="comment"><?php echo $comment['comment']; ?></li>
+                            <?php endforeach; ?>
+                        </ul>
+                        <form class="comment-form" action="/app/posts/comments.php" method="post">
+                        <li class="comment"></li>
+                            <div class="comment-input">
+                                <input type="text" name="comment" id="comment" value="">
+                                <input type="hidden" name="post-id" id="post-id" value=" <?= $post['id'] ?>">
+                                <button class="send" type="submit">Send</button>
+                            </div>
                         </form>
                 </div>
 
