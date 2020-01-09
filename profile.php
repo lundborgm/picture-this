@@ -31,7 +31,7 @@ $posts = getPostById($_SESSION['user']['id'], $pdo);
             <img class="avatar" src="<?php echo "uploads/avatar/".$avatar; ?>" alt="">
         <?php endif; ?>
 
-        <a href="editprofile.php"><button>Edit profile</button></a>
+        <a href="editprofile.php"><button><i class="fas fa-cog"></i></button></a>
 
         <a href="newpost.php"><button>New post</button></a>
     </div>
@@ -41,7 +41,7 @@ $posts = getPostById($_SESSION['user']['id'], $pdo);
             <article class="profile-posts">
                 <h2> <?php echo $post['title']; ?> </h2>
                 <p> <?php echo $post['id']; ?></p>
-                <a href="<?php echo "editpost.php?id=".$post['id']; ?>"><button>Edit post</button></a>
+                <a href="<?php echo "editpost.php?id=".$post['id']; ?>"><button><i class="fas fa-edit"></i></button></a>
                 <img class="post-image" src="<?php echo "uploads/".$post['image']; ?>" alt="">
                 <p> <?php echo $post['content']; ?> </p>
                 <small> <?php echo "Posted by: ".$user['name']; ?></small>

@@ -18,10 +18,17 @@ body {
 }
 
 nav {
+  display: flex;
+  align-items: center;
   width: 100%;
-  height: 50px;
+  height: 7vh;
   margin: 0 0 20px 0;
-  background-color: var(--grey-color);
+  background-color: white;
+  font-size: 20px;
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  border-bottom: 1px solid rgb(218, 218, 218);
 }
 
 nav ul {
@@ -41,12 +48,27 @@ nav a:visited {
   color: black;
 }
 
+.fa-plus {
+  /* color: var(--pop); */
+  color: black;
+}
+
+.plus-btn {
+  border: none;
+  border-radius: 100%;
+  margin: 0;
+  padding: 5px 5px;
+  z-index: 10;
+  font-size: 12px;
+}
+
 .container {
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 
 .profile-page {
@@ -62,7 +84,7 @@ article {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 20px 0 0 0;
+  margin: 7vh 0 7vh 0;
 }
 
 button {
@@ -167,6 +189,21 @@ input {
   font-size: 14px;
   padding: 4px 8px;
   margin: 5px 0;
+}
+
+.add-post {
+  background-color: white;
+  /* opacity: 90%; */
+  width: 100vw;
+  height: 7vh;
+  z-index: 1;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  bottom: 0;
+  border-top: 1px solid rgb(218, 218, 218);
 }
 
 @media screen and (min-width: 450px) {

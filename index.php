@@ -7,14 +7,14 @@ $allPosts = getAllPosts($pdo);
 
 ?>
 
-    <div class="profile-page">
-        <h1><?php echo $config['title']; ?></h1>
-        <p>Home page.</p>
-        <?php if (loggedIn()): ?>
-        <p>Welcome, <?php echo $_SESSION['user']['name']; ?>!</p>
-    </div>
+<div class="post-wrapper">
 
-    <div class="post-wrapper">
+        <div class="profile-page">
+            <h1><?php echo $config['title']; ?></h1>
+            <p>Home page.</p>
+            <?php if (loggedIn()): ?>
+            <p>Welcome, <?php echo $_SESSION['user']['name']; ?>!</p>
+        </div>
         <?php foreach ($allPosts as $post): ?>
             <div class="profile-posts">
                 <?php $likes = countLikes($post['id'], $pdo) ?>
