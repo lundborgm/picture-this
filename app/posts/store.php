@@ -11,18 +11,25 @@ if (isset($_POST['title'], $_FILES['image'], $_POST['content'])) {
     $content = filter_var( $_POST['content'], FILTER_SANITIZE_STRING);
     $image = $_FILES['image'];
     $imageName = $image['name'];
+    $fileType = $image['type'];
+    $allowed = [
+        'image/png',
+        'image/jpg',
+        'image/jpeg',
+        'image/gif'
+    ];
 
     date_default_timezone_set('Europe/Stockholm');
     $date = date('Y/m/d H:i');
 
     // $uploadedImage = $date.'-'.$imageName;
 
-    if ($image['type'] !== 'image/png') {
-        $_SESSION['errors'] = ["The image file type is not allowed."];
+    if (!in_array($fileType, $allowed)){
+        $_SESSION['errors'] = ["The image file type is not allowed. Please use png, jpg, jpeg or gif."];
     }
 
     elseif ($image['size'] > 3000000) {
-        $_SESSION['errors'] = ["The uploaded file exceeded the file size limit."];
+        $_SESSION['errors'] = ["The image exceeded the file size limit of 3MB. Please try again."];
     }
 
     else {

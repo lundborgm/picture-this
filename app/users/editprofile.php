@@ -10,14 +10,20 @@ if (isset($_FILES['avatar'])) {
     $avatarName = $avatar['name'];
     $date = date('ymd');
     $avatarImage = $date.'-'.$avatarName;
+    $fileType = $avatar['type'];
+    $allowed = [
+        'image/png',
+        'image/jpg',
+        'image/jpeg',
+        'image/gif'
+    ];
 
-
-    if ($avatar['type'] !== 'image/png') {
-        $_SESSION['errors'] = ["The image file type is not allowed."];
+    if (!in_array($fileType, $allowed)){
+        $_SESSION['errors'] = ["The image file type is not allowed. Please use png, jpg, jpeg or gif."];
     }
 
     elseif ($avatar['size'] > 3000000) {
-        $_SESSION['errors'] = ["The uploaded file exceeded the file size limit."];
+        $_SESSION['errors'] = ["The image exceeded the file size limit of 3MB. Please try again."];
     }
 
     else {
