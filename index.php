@@ -8,6 +8,7 @@ if (!loggedIn()) {
     redirect('/login.php');
 }
 
+$pageName = 'index';
 
 ?>
 

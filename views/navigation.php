@@ -1,7 +1,7 @@
 <nav class="top-bar">
     <ul class="navbar-top">
         <li class="nav-item">
-            <a class="nav-link" href="/index.php">LOGO</a>
+            <a class="nav-link" href="/index.php"></a>
         </li>
 
         <li>

@@ -12,6 +12,7 @@ displayError();
 displayMessage();
 
 $user = getUserById($_SESSION['user']['id'], $pdo);
+$userId = (int)$user['id'];
 $avatar = $user['avatar_image'];
 $biography = $user['biography'];
 
@@ -28,10 +29,10 @@ $posts = getPostById($_SESSION['user']['id'], $pdo);
         <img class="avatar" src="<?php echo "uploads/avatar/".$avatar; ?>" alt="">
 
         <div class="follow">
-            <?php $followers = countFollowers((int)$_SESSION['user']['id'], $pdo); ?>
-            <?php $following = countFollowing((int)$_SESSION['user']['id'], $pdo); ?>
-            <a href="<?php echo "followers.php?id=".$authorId; ?>">Followers: <span class="followers"><?php echo $followers; ?></span></a>
-            <a href="<?php echo "following.php?id=".$authorId; ?>">Following: <span class="followers"><?php echo $following; ?></span></a>
+            <?php $followers = countFollowers($userId, $pdo); ?>
+            <?php $following = countFollowing($userId, $pdo); ?>
+            <a href="<?php echo "followers.php?id=".$userId; ?>">Followers: <span class="followers"><?php echo $followers; ?></span></a>
+            <a href="<?php echo "following.php?id=".$userId; ?>">Following: <span class="followers"><?php echo $following; ?></span></a>
         </div>
 
         <a href="editprofile.php"><button><i class="fas fa-cog"></i></button></a>

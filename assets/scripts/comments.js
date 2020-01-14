@@ -17,7 +17,6 @@ commentForms.forEach(form => {
       })
       .then(json => {
         // Now it is possible to use the JSON as a normal object.
-        console.log(json);
 
         const newComment = json.comment;
         const newAuthor = json.name;
@@ -26,8 +25,6 @@ commentForms.forEach(form => {
 
         comment.innerHTML = newComment;
         author.innerHTML = newAuthor;
-
-        // console.log(newComment);
       });
   });
 });

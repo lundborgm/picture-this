@@ -15,6 +15,10 @@ li {
   list-style: none;
 }
 
+h3 {
+  font-weight: bold;
+}
+
 body {
   font-family: "Montserrat", "Times New Roman", Times, serif;
   width: 100%;
@@ -67,9 +71,14 @@ body {
   border-top: 1px solid rgb(218, 218, 218);
 }
 
-nav a,
-nav a:visited {
+a,
+a:visited {
   color: rgb(61, 61, 61);
+  text-decoration: none;
+}
+
+nav a:active {
+  color: var(--pop);
 }
 
 .plus-btn {
@@ -90,9 +99,9 @@ nav a:visited {
   margin: 7vh 0 7vh 0;
 }
 
-.profile-page {
+/* .profile-page {
   background-color: rgb(228, 232, 255);
-}
+} */
 
 article {
   margin: 0 20px 0 20px;
@@ -201,7 +210,7 @@ h2 {
   display: flex;
   flex-direction: row;
   /* background-color: rgb(228, 228, 228); */
-  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .author {
