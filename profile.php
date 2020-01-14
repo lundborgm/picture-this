@@ -12,12 +12,14 @@ displayError();
 displayMessage();
 
 $user = getUserById($_SESSION['user']['id'], $pdo);
+
 $userId = (int)$user['id'];
+
 $avatar = $user['avatar_image'];
+
 $biography = $user['biography'];
 
 $posts = getPostById($_SESSION['user']['id'], $pdo);
-
 
 ?>
 

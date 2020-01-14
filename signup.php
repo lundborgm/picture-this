@@ -2,13 +2,11 @@
 
 require __DIR__.'/views/header.php';
 
-displayError();
-
 ?>
 
 <article>
     <h1>Sign up:</h1>
-
+    <p class="error"> <?php displayError(); ?> </p>
     <form action="app/users/signup.php" method="post">
         <div class="form-group">
             <label for="email">Email:</label>

@@ -7,22 +7,20 @@ if (!loggedIn()) {
     redirect('/');
 }
 
+displayError();
 
 displayMessage();
 
-displayError();
+$profileId = (int)$_GET['id'];
 
-$allPosts = getAllPosts($pdo);
+$user = getUserById($profileId, $pdo);
 
-$authorId = (int)$_GET['id'];
+$posts = getPostById($profileId, $pdo);
 
-$user = getUserById($authorId, $pdo);
-
-$posts = getPostById($authorId, $pdo);
-
-if ($authorId === (int)$_SESSION['user']['id']) {
+if ($profileId === (int)$_SESSION['user']['id']) {
     redirect('profile.php');
 }
+
 ?>
 
 <div class="profile-page">
@@ -31,21 +29,21 @@ if ($authorId === (int)$_SESSION['user']['id']) {
         <p><?php echo $user['biography']; ?></p>
         <img class="avatar" src="<?php echo "uploads/avatar/".$user['avatar_image']; ?>" alt="">
 
-        <?php $followers = countFollowers($authorId, $pdo); ?>
-        <?php $following = countFollowing($authorId, $pdo); ?>
+        <?php $followers = countFollowers($profileId, $pdo); ?>
+        <?php $following = countFollowing($profileId, $pdo); ?>
 
         <form class="follow-form" action="/app/users/follow.php" method="post">
             <input type="hidden" name="follow" id="follow" value=" <?= $user['id'] ?>">
             <button class="follow-btn" type="submit">
-            <?php if (checkIfFollowing($_SESSION['user']['id'], $authorId, $pdo)): ?>
+            <?php if (checkIfFollowing($_SESSION['user']['id'], $profileId, $pdo)): ?>
                         Unfollow
                     <?php else: ?>
                         Follow
                     <?php endif; ?>
                 </button>
         </form>
-        <a href="<?php echo "followers.php?id=".$authorId; ?>">Followers: <span class="followers"><?php echo $followers; ?></span></a>
-        <a href="<?php echo "following.php?id=".$authorId; ?>">Following: <span class="followers"><?php echo $following; ?></span></a>
+        <a href="<?php echo "followers.php?id=".$profileId; ?>">Followers: <span class="followers"><?php echo $followers; ?></span></a>
+        <a href="<?php echo "following.php?id=".$profileId; ?>">Following: <span class="followers"><?php echo $following; ?></span></a>
 
     </div>
 

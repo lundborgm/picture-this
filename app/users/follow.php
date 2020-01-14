@@ -14,7 +14,7 @@ if (isset($_POST['follow'])) {
     if (checkIfFollowing($userId, $profileId, $pdo)) {
         // Unfollow if already following
 
-        $query = 'DELETE FROM follow WHERE user_id = :user_id AND following = :following';
+        $query = 'DELETE FROM follow WHERE user_id = :user_id AND profile_id = :profile_id';
 
         $statement = $pdo->prepare($query);
 
@@ -24,12 +24,12 @@ if (isset($_POST['follow'])) {
 
         $statement->execute([
             ':user_id' => $userId,
-            ':following' => $profileId,
+            ':profile_id' => $profileId,
         ]);
 
     } else {
 
-    $query = 'INSERT INTO follow (user_id, following) VALUES (:user_id, :following)';
+    $query = 'INSERT INTO follow (user_id, profile_id) VALUES (:user_id, :profile_id)';
 
     $statement = $pdo->prepare($query);
 
@@ -39,12 +39,9 @@ if (isset($_POST['follow'])) {
 
     $statement->execute([
         ':user_id' => $userId,
-        ':following' => $profileId,
+        ':profile_id' => $profileId,
     ]);
     }
-
-    // $follow = countFollows($userId, $profileId, $pdo);
-    // echo json_encode($follow);
 
     $followers = countFollowers($profileId, $pdo);
     $isFollowing = checkIfFollowing($userId, $profileId, $pdo);
@@ -57,5 +54,3 @@ if (isset($_POST['follow'])) {
     echo json_encode($json);
 
 }
-
-// redirect('/');

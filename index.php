@@ -8,8 +8,6 @@ if (!loggedIn()) {
     redirect('/login.php');
 }
 
-$pageName = 'index';
-
 ?>
 
 <div class="post-wrapper">

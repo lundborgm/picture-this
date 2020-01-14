@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 if (!function_exists('redirect')) {
     /**
-     * Redirect the user to given path.
+     * Redirect the user to given path
      *
      * @param string $path
      *
      * @return void
      */
-    function redirect(string $path)
+    function redirect(string $path): void
     {
         header("Location: ${path}");
         exit;
@@ -28,10 +28,11 @@ function loggedIn(): bool
 }
 
 /**
+ * Display error-messages and then unset them
  *
- *
+ * @return void
  */
-function displayError()
+function displayError(): void
 {
     if (isset($_SESSION['errors'])) {
         foreach ($_SESSION['errors'] as $error) {
@@ -43,10 +44,11 @@ function displayError()
 }
 
 /**
+ * Display messages and then unset them
  *
- *
+ * @return void
  */
-function displayMessage()
+function displayMessage(): void
 {
     if (isset($_SESSION['messages'])) {
         foreach ($_SESSION['messages'] as $message) {
@@ -85,22 +87,22 @@ function getUserById(int $userId, PDO $pdo): array
 /**
  * Get posts from the database
  *
- * @param integer $authorId
+ * @param integer $profileId
  *
  * @param PDO $pdo
  *
  * @return array
  */
-function getPostById(int $authorId, PDO $pdo): array
+function getPostById(int $profileId, PDO $pdo): array
 {
-    $statement = $pdo->prepare('SELECT * FROM posts WHERE author_id = :author_id ORDER BY date DESC');
+    $statement = $pdo->prepare('SELECT * FROM posts WHERE author_id = :profile_id ORDER BY date DESC');
 
     if (!$statement) {
         die(var_dump($pdo->errorInfo()));
     }
 
     $statement->execute([
-        ':author_id' => $authorId
+        ':profile_id' => $profileId
     ]);
 
     $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -108,7 +110,7 @@ function getPostById(int $authorId, PDO $pdo): array
 }
 
 /**
- * Get posts from the database -> edit posts
+ * Select a specific post to be able to update it
  *
  * @param integer $postId
  *
@@ -133,7 +135,7 @@ function editPost(int $postId, PDO $pdo): array
 }
 
 /**
- * Get all posts from the database
+ * Get all posts from the database and some user-info to display in feed
  *
  * @param PDO $pdo
  *
@@ -163,7 +165,6 @@ function getAllPosts(PDO $pdo): array
  * @param PDO $pdo
  *
  * @return boolean
- *
  */
 function checkForLikes(int $postId, int $userId, PDO $pdo): bool
 {
@@ -188,10 +189,15 @@ function checkForLikes(int $postId, int $userId, PDO $pdo): bool
 }
 
 /**
+ * Count the likes of a specific post
  *
+ * @param integer $postId
  *
+ * @param PDO $pdo
+ *
+ * @return integer
  */
-function countLikes(int $postId, PDO $pdo)
+function countLikes(int $postId, PDO $pdo): int
 {
     $statement = $pdo->prepare('SELECT COUNT(*) FROM likes WHERE post_id = :post_id');
 
@@ -209,12 +215,19 @@ function countLikes(int $postId, PDO $pdo)
 }
 
 /**
+ * Check if user is following another user
  *
+ * @param integer $userId
  *
+ * @param integer $profileId
+ *
+ * @param PDO $pdo
+ *
+ * @return boolean
  */
-function checkIfFollowing(int $userId, int $follow ,PDO $pdo): bool
+function checkIfFollowing(int $userId, int $profileId, PDO $pdo): bool
 {
-    $statement = $pdo->prepare('SELECT * FROM follow WHERE user_id = :user_id AND following = :following');
+    $statement = $pdo->prepare('SELECT * FROM follow WHERE user_id = :user_id AND profile_id = :profile_id');
 
     if (!$statement) {
         die(var_dump($pdo->errorInfo()));
@@ -222,7 +235,7 @@ function checkIfFollowing(int $userId, int $follow ,PDO $pdo): bool
 
     $statement->execute([
         ':user_id' => $userId,
-        ':following' => $follow
+        ':profile_id' => $profileId
     ]);
 
     $follow = $statement->fetch(PDO::FETCH_ASSOC);
@@ -235,19 +248,24 @@ function checkIfFollowing(int $userId, int $follow ,PDO $pdo): bool
 }
 
 /**
+ * Count how many followers the selected user has
  *
+ * @param integer $profileId
  *
+ * @param PDO $pdo
+ *
+ * @return integer
  */
-function countFollowers(int $follow, PDO $pdo): int
+function countFollowers(int $profileId, PDO $pdo): int
 {
-    $statement = $pdo->prepare('SELECT COUNT(*) FROM follow WHERE following = :following');
+    $statement = $pdo->prepare('SELECT COUNT(*) FROM follow WHERE profile_id = :profile_id');
 
     if (!$statement) {
         die(var_dump($pdo->errorInfo()));
     }
 
     $statement->execute([
-        ':following' => $follow
+        ':profile_id' => $profileId
     ]);
 
     $followers = $statement->fetch(PDO::FETCH_ASSOC);
@@ -256,8 +274,13 @@ function countFollowers(int $follow, PDO $pdo): int
 }
 
 /**
+ * Count how many users the selected user is following
  *
+ * @param integer $userId
  *
+ * @param PDO $pdo
+ *
+ * @return integer
  */
 function countFollowing(int $userId, PDO $pdo): int
 {
@@ -277,33 +300,43 @@ function countFollowing(int $userId, PDO $pdo): int
 }
 
 /**
+ * Get information about a users followers
  *
+ * @param integer $profileId
  *
+ * @param PDO $pdo
+ *
+ * @return array
  */
-function displayFollowersName(int $follow, PDO $pdo): array
+function displayFollowersList(int $profileId, PDO $pdo): array
 {
-    $statement = $pdo->prepare('SELECT * FROM follow INNER JOIN users on user_id = users.id WHERE following = :following');
+    $statement = $pdo->prepare('SELECT * FROM follow INNER JOIN users on user_id = users.id WHERE profile_id = :profile_id');
 
     if (!$statement) {
         die(var_dump($pdo->errorInfo()));
     }
 
     $statement->execute([
-        ':following' => $follow
+        ':profile_id' => $profileId
     ]);
 
-    $names = $statement->fetchAll(PDO::FETCH_ASSOC);
+    $followersList = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-    return $names;
+    return $followersList;
 }
 
 /**
+ * Get information about the users that the selected user is following
  *
+ * @param integer $userId
  *
+ * @param PDO $pdo
+ *
+ * @return array
  */
 function displayFollowingList(int $userId, PDO $pdo): array
 {
-    $statement = $pdo->prepare('SELECT * FROM follow INNER JOIN users on following = users.id WHERE user_id = :user_id');
+    $statement = $pdo->prepare('SELECT * FROM follow INNER JOIN users on profile_id = users.id WHERE user_id = :user_id');
 
     if (!$statement) {
         die(var_dump($pdo->errorInfo()));
@@ -313,14 +346,19 @@ function displayFollowingList(int $userId, PDO $pdo): array
         ':user_id' => $userId
     ]);
 
-    $names = $statement->fetchAll(PDO::FETCH_ASSOC);
+    $followingList = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-    return $names;
+    return $followingList;
 }
 
 /**
+ * Get comments from database
  *
+ * @param integer $postId
  *
+ * @param PDO $pdo
+ *
+ * @return array
  */
 function getComments(int $postId, PDO $pdo): array
 {
@@ -337,10 +375,18 @@ function getComments(int $postId, PDO $pdo): array
     $comments = $statement->fetchAll(PDO::FETCH_ASSOC);
 
     return $comments;
-
 }
 
-function getUsernameFromComment(int $userId, PDO $pdo)
+/**
+ * Display the name of the user who commented on a post
+ *
+ * @param integer $userId
+ *
+ * @param PDO $pdo
+ *
+ * @return array
+ */
+function getUsernameFromComment(int $userId, PDO $pdo): array
 {
     $statement = $pdo->prepare('SELECT name FROM comments INNER JOIN users on user_id = users.id WHERE user_id = :user_id');
 

@@ -7,14 +7,13 @@ if (!loggedIn()) {
     redirect('/');
 }
 
-displayMessage();
-
-displayError();
-
 ?>
 
 <article>
     <h1>New post</h1>
+
+    <p class="error"> <?php displayError(); ?> </p>
+    <p class="message"> <?php displayMessage(); ?> </p>
 
     <form action="app/posts/store.php" method="post" enctype="multipart/form-data">
         <h2>Title</h2>

@@ -16,8 +16,6 @@ if (form) {
         return response.json();
       })
       .then(json => {
-        console.log(json);
-
         const followBtn = document.querySelector(".follow-btn");
         const followers = document.querySelector(".followers");
         followers.innerHTML = json.followers;

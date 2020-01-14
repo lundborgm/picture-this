@@ -15,7 +15,7 @@ $authorId = (int)$_GET['id'];
 
 ?>
 
-<?php $followersList = displayFollowersName($authorId, $pdo); ?>
+<?php $followersList = displayFollowersList($authorId, $pdo); ?>
 
 <ul>
     <?php foreach ($followersList as $follower):?>
