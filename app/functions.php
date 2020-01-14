@@ -324,7 +324,7 @@ function displayFollowingList(int $userId, PDO $pdo): array
  */
 function getComments(int $postId, PDO $pdo): array
 {
-    $statement = $pdo->prepare('SELECT comment FROM comments WHERE post_id = :post_id');
+    $statement = $pdo->prepare('SELECT comment, name FROM comments INNER JOIN users on user_id = users.id WHERE post_id = :post_id');
 
     if (!$statement) {
         die(var_dump($pdo->errorInfo()));
@@ -337,4 +337,22 @@ function getComments(int $postId, PDO $pdo): array
     $comments = $statement->fetchAll(PDO::FETCH_ASSOC);
 
     return $comments;
+
+}
+
+function getUsernameFromComment(int $userId, PDO $pdo)
+{
+    $statement = $pdo->prepare('SELECT name FROM comments INNER JOIN users on user_id = users.id WHERE user_id = :user_id');
+
+    if (!$statement) {
+        die(var_dump($pdo->errorInfo()));
+    }
+
+    $statement->execute([
+        ':user_id' => $userId
+    ]);
+
+    $username = $statement->fetch(PDO::FETCH_ASSOC);
+
+    return $username;
 }

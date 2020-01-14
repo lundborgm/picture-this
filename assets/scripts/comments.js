@@ -17,12 +17,17 @@ commentForms.forEach(form => {
       })
       .then(json => {
         // Now it is possible to use the JSON as a normal object.
+        console.log(json);
+
         const newComment = json.comment;
+        const newAuthor = json.name;
         const comment = e.target.querySelector(".comment");
+        const author = e.target.querySelector(".author");
 
         comment.innerHTML = newComment;
+        author.innerHTML = newAuthor;
 
-        console.log(newComment);
+        // console.log(newComment);
       });
   });
 });

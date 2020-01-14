@@ -11,6 +11,10 @@
   padding: 0;
 }
 
+li {
+  list-style: none;
+}
+
 body {
   font-family: "Montserrat", "Times New Roman", Times, serif;
   width: 100%;
@@ -189,12 +193,20 @@ h2 {
 }
 
 .comment-list {
+  display: flex;
   flex-direction: column;
 }
 
-.comment {
-  list-style: none;
-  background-color: rgb(228, 228, 228);
+.comments {
+  display: flex;
+  flex-direction: row;
+  /* background-color: rgb(228, 228, 228); */
+  margin-top: 10px;
+}
+
+.author {
+  font-weight: bold;
+  margin: 0 5px 0 0;
 }
 
 input {

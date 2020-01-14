@@ -47,17 +47,24 @@ if (!loggedIn()) {
             <div class="comment-wrapper">
                 <ul class="comment-list">
                     <?php foreach ($comments as $comment): ?>
-                        <li class="comment"><?php echo $comment['comment']; ?></li>
-                        <?php endforeach; ?>
-                    </ul>
-                    <form class="comment-form" action="/app/posts/comments.php" method="post">
-                    <li class="comment"></li>
-                        <div class="comment-input">
-                            <input type="text" name="comment" id="comment" value="">
-                            <input type="hidden" name="post-id" id="post-id" value=" <?= $post['id'] ?>">
-                            <button class="send" type="submit">Send</button>
-                        </div>
-                    </form>
+                        <li class="comments">
+                            <p class="author"><?php echo $comment['name']; ?></p>
+                            <p class="comment"><?php echo $comment['comment']; ?></p>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+
+                <form class="comment-form" action="/app/posts/comments.php" method="post">
+                <li class="comments">
+                    <p class="author"></p>
+                    <p class="comment"></p>
+                </li>
+                    <div class="comment-input">
+                        <input type="text" name="comment" id="comment" value="">
+                        <input type="hidden" name="post-id" id="post-id" value=" <?= $post['id'] ?>">
+                        <button class="send" type="submit">Send</button>
+                    </div>
+                </form>
             </div>
         </div>
     <?php endforeach; ?>

@@ -8,7 +8,7 @@ header('Content-Type: application/json');
 
 if (isset($_POST['comment'])) {
 
-    $userId = $_SESSION['user']['id'];
+    $userId = (int)$_SESSION['user']['id'];
     $postId = (int)$_POST['post-id'];
     $comment = $_POST['comment'];
 
@@ -30,9 +30,11 @@ if (isset($_POST['comment'])) {
         ':date' => $date
     ]);
 
+    $names = getUsernameFromComment($userId, $pdo);
+
     $comments = ([
         'comment' => $comment,
-
+        'name' => $names['name']
     ]);
 
     echo json_encode($comments);
