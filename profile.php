@@ -25,14 +25,16 @@ $posts = getPostById($_SESSION['user']['id'], $pdo);
         <p>Hello, <?php echo $_SESSION['user']['name']; ?>. This is your profile.</p>
         <h2>Biography</h2>
         <p><?php echo $biography; ?></p>
-        <?php if (!$avatar): ?>
-            <img class="avatar" src="uploads/avatar/avatar.png" alt="">
-        <?php else: ?>
-            <img class="avatar" src="<?php echo "uploads/avatar/".$avatar; ?>" alt="">
-        <?php endif; ?>
+        <img class="avatar" src="<?php echo "uploads/avatar/".$avatar; ?>" alt="">
+
+        <div class="follow">
+            <?php $followers = countFollowers((int)$_SESSION['user']['id'], $pdo); ?>
+            <?php $following = countFollowing((int)$_SESSION['user']['id'], $pdo); ?>
+            <a href="<?php echo "followers.php?id=".$authorId; ?>">Followers: <span class="followers"><?php echo $followers; ?></span></a>
+            <a href="<?php echo "following.php?id=".$authorId; ?>">Following: <span class="followers"><?php echo $following; ?></span></a>
+        </div>
 
         <a href="editprofile.php"><button><i class="fas fa-cog"></i></button></a>
-
         <a href="newpost.php"><button>New post</button></a>
     </div>
 
@@ -40,7 +42,6 @@ $posts = getPostById($_SESSION['user']['id'], $pdo);
         <?php foreach ($posts as $post): ?>
             <article class="profile-posts">
                 <h2> <?php echo $post['title']; ?> </h2>
-                <p> <?php echo $post['id']; ?></p>
                 <a href="<?php echo "editpost.php?id=".$post['id']; ?>"><button><i class="fas fa-edit"></i></button></a>
                 <img class="post-image" src="<?php echo "uploads/".$post['image']; ?>" alt="">
                 <p> <?php echo $post['content']; ?> </p>

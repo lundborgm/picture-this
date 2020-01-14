@@ -30,7 +30,7 @@ if (isset($_POST['email'], $_POST['name'], $_POST['password'])) {
 
 
     // Create a new account
-    $query = 'INSERT INTO users (name, email, password) VALUES (:name, :email, :password)';
+    $query = 'INSERT INTO users (name, email, password, avatar_image) VALUES (:name, :email, :password, :avatar_image)';
     $statement = $pdo->prepare($query);
 
     if (!$statement) {
@@ -41,6 +41,7 @@ if (isset($_POST['email'], $_POST['name'], $_POST['password'])) {
         ':name' => $name,
         ':email' => $email,
         ':password' => $password,
+        ':avatar_image' => 'avatar.png'
         ]);
 
     }

@@ -7,6 +7,7 @@ if (!loggedIn()) {
     redirect('/');
 }
 
+
 displayMessage();
 
 displayError();
@@ -19,6 +20,9 @@ $user = getUserById($authorId, $pdo);
 
 $posts = getPostById($authorId, $pdo);
 
+if ($authorId === (int)$_SESSION['user']['id']) {
+    redirect('profile.php');
+}
 ?>
 
 <div class="profile-page">
@@ -43,7 +47,6 @@ $posts = getPostById($authorId, $pdo);
         <a href="<?php echo "followers.php?id=".$authorId; ?>">Followers: <span class="followers"><?php echo $followers; ?></span></a>
         <a href="<?php echo "following.php?id=".$authorId; ?>">Following: <span class="followers"><?php echo $following; ?></span></a>
 
-        <!-- <h3>Following: <span class="following"><?php echo $following; ?></span></h3> -->
     </div>
 
     <div class="post-wrapper">
