@@ -16,7 +16,7 @@ if (!loggedIn()) {
         // The users should only be able to delete their own posts
         if ($userId !== $authorId) {
 
-            $_SESSION['errors'] = ["Fail, you can only delete your own posts!"];
+            $_SESSION['errors'] = ["Ooops, you can only delete your own posts!"];
             redirect('/profile.php');
 
         } else {
@@ -33,6 +33,9 @@ if (!loggedIn()) {
             ':id' => $postId,
             ':author_id' => $authorId,
         ]);
+
+        // $path = '../../uploads/' . $postName;
+        // unlink($path);
 
         $_SESSION['messages'] = ["Post deleted!"];
         redirect('/profile.php');

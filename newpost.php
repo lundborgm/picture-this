@@ -25,7 +25,7 @@ if (!loggedIn()) {
         <h2>Choose image</h2>
         <div class="form-group">
             <label for="image">Image:</label>
-            <input type="file" accept=".png, .jpg, .jpeg" name="image" id="image">
+            <input type="file" accept=".png, .jpg, .jpeg, .gif" name="image" id="image">
         </div>
 
         <h2>Description</h2>

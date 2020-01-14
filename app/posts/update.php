@@ -13,13 +13,20 @@ if (isset($_POST['title'], $_POST['content'], $_FILES['image'])) {
     $date = date('ymd');
     $uploadedImage = $date.'-'.$imageName;
     $postId = $_GET['id'];
+    $fileType = $image['type'];
+    $allowed = [
+        'image/png',
+        'image/jpg',
+        'image/jpeg',
+        'image/gif'
+    ];
 
-    if ($image['type'] !== 'image/png') {
-        $_SESSION['errors'] = ["The image file type is not allowed."];
+    if (!in_array($fileType, $allowed)){
+        $_SESSION['errors'] = ["The image file type is not allowed. Please use png, jpg, jpeg or gif."];
     }
 
     elseif ($image['size'] > 3000000) {
-        $_SESSION['errors'] = ["The uploaded file exceeded the file size limit."];
+        $_SESSION['errors'] = ["The image exceeded the file size limit of 3MB. Please try again."];
     }
 
     else {

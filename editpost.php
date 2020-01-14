@@ -6,10 +6,6 @@ if (!loggedIn()) {
     redirect('/');
 }
 
-displayMessage();
-
-displayError();
-
 $user = getUserById($_SESSION['user']['id'], $pdo);
 
 $posts = editPost($_GET['id'], $pdo);
@@ -17,6 +13,9 @@ $posts = editPost($_GET['id'], $pdo);
 ?>
 
 <article>
+
+    <p class="error"> <?php displayError(); ?> </p>
+    <p class="message"> <?php displayMessage(); ?> </p>
 
     <?php foreach ($posts as $post): ?>
         <article class="posts">
@@ -40,7 +39,7 @@ $posts = editPost($_GET['id'], $pdo);
         <h2>Image</h2>
         <div class="form-group">
             <label for="image">Image:</label>
-            <input type="file" accept=".png, .jpg, .jpeg" name="image" id="image" required>
+            <input type="file" accept=".png, .jpg, .jpeg, .gif" name="image" id="image" required>
         </div>
 
         <h2>Description</h2>

@@ -7,10 +7,6 @@ if (!loggedIn()) {
     redirect('/');
 }
 
-displayError();
-
-displayMessage();
-
 $user = getUserById($_SESSION['user']['id'], $pdo);
 
 $userId = (int)$user['id'];
@@ -22,6 +18,9 @@ $biography = $user['biography'];
 $posts = getPostById($_SESSION['user']['id'], $pdo);
 
 ?>
+
+    <p class="error"> <?php displayError(); ?> </p>
+    <p class="message"> <?php displayMessage(); ?> </p>
 
     <div class="profile-page">
         <h1>Profile</h1>

@@ -85,7 +85,8 @@ a:visited {
   text-decoration: none;
 }
 
-nav a:active {
+nav a:active,
+nav a:hover {
   color: var(--pop);
 }
 

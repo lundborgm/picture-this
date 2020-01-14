@@ -7,10 +7,6 @@ if (!loggedIn()) {
     redirect('/');
 }
 
-displayError();
-
-displayMessage();
-
 $profileId = (int)$_GET['id'];
 
 $user = getUserById($profileId, $pdo);
@@ -31,6 +27,9 @@ if ($profileId === (int)$_SESSION['user']['id']) {
 
         <?php $followers = countFollowers($profileId, $pdo); ?>
         <?php $following = countFollowing($profileId, $pdo); ?>
+
+        <p class="error"> <?php displayError(); ?> </p>
+        <p class="message"> <?php displayMessage(); ?> </p>
 
         <form class="follow-form" action="/app/users/follow.php" method="post">
             <input type="hidden" name="follow" id="follow" value=" <?= $user['id'] ?>">
