@@ -20,14 +20,12 @@ if (isset($_POST['email'], $_POST['name'], $_POST['password'])) {
 
     $emailExist = $statement->fetch(PDO::FETCH_ASSOC);
 
-
     // If email exists print errormessage
     if ($emailExist) {
         $_SESSION['errors'] = ["The email $email is already taken"];
 
         redirect('/signup.php');
     }
-
 
     // Create a new account
     $query = 'INSERT INTO users (name, email, password, avatar_image) VALUES (:name, :email, :password, :avatar_image)';
@@ -45,6 +43,5 @@ if (isset($_POST['email'], $_POST['name'], $_POST['password'])) {
         ]);
 
     }
-
 
 redirect('/');

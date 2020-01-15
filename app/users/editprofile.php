@@ -22,7 +22,7 @@ if (isset($_FILES['avatar'])) {
         $_SESSION['errors'] = ["The image file type is not allowed. Please use png, jpg, jpeg or gif."];
     }
 
-    elseif ($avatar['size'] > 3000000) {
+    elseif ($avatar['size'] > 3145728) {
         $_SESSION['errors'] = ["The image exceeded the file size limit of 3MB. Please try again."];
     }
 

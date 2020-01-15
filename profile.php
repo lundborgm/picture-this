@@ -43,8 +43,7 @@ $posts = getPostById($_SESSION['user']['id'], $pdo);
     <div class="post-wrapper">
         <?php foreach ($posts as $post): ?>
             <article class="profile-posts">
-                <h2> <?php echo $post['title']; ?> </h2>
-                <a href="<?php echo "editpost.php?id=".$post['id']; ?>"><button><i class="fas fa-edit"></i></button></a>
+                <a href="<?php echo "editpost.php?id=".$post['id']."&author_id=".$post['author_id']; ?>"><button><i class="fas fa-edit"></i></button></a>
                 <img class="post-image" src="<?php echo "uploads/".$post['image']; ?>" alt="">
                 <p> <?php echo $post['content']; ?> </p>
                 <small> <?php echo "Posted by: ".$user['name']; ?></small>

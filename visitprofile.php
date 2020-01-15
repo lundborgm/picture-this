@@ -51,7 +51,6 @@ if ($profileId === (int)$_SESSION['user']['id']) {
             <div class="profile-posts">
                 <?php $likes = countLikes($post['id'], $pdo) ?>
 
-                <!-- <h2> <?php echo $post['title']; ?> </h2> -->
                 <div class="post-header">
                     <img class="post-avatar" src="<?php echo "uploads/avatar/".$user['avatar_image']; ?>" alt="">
                    <a class="visit-profile" href="<?php echo "visitprofile.php?id=".$post['author_id']; ?>"><h3> <?php echo $user['name']; ?> </h3></a>

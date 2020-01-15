@@ -16,11 +16,6 @@ if (!loggedIn()) {
     <p class="message"> <?php displayMessage(); ?> </p>
 
     <form action="app/posts/store.php" method="post" enctype="multipart/form-data">
-        <h2>Title</h2>
-        <div class="form-group">
-            <label for="title">Title:</label>
-            <input class="form-control" type="text" name="title" id="title">
-        </div>
 
         <h2>Choose image</h2>
         <div class="form-group">
