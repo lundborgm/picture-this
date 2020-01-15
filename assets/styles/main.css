@@ -1,5 +1,5 @@
 :root {
-  --grey-color: rgb(238, 238, 238);
+  --light-grey: rgb(201, 201, 201);
   --dark-grey: rgb(39, 39, 39);
   --pop: rgb(125, 74, 246);
   --poppin: rgb(111, 0, 255);
@@ -191,32 +191,6 @@ h2 {
   display: flex;
   flex-direction: row;
   align-items: center;
-}
-
-.comment-wrapper {
-  padding: 0 10px;
-}
-
-.comment-form {
-  display: flex;
-  flex-direction: column;
-}
-
-.comment-list {
-  display: flex;
-  flex-direction: column;
-}
-
-.comments {
-  display: flex;
-  flex-direction: row;
-  /* background-color: rgb(228, 228, 228); */
-  margin-bottom: 10px;
-}
-
-.author {
-  font-weight: bold;
-  margin: 0 5px 0 0;
 }
 
 input {

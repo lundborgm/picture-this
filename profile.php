@@ -90,8 +90,8 @@ $posts = getPostById($_SESSION['user']['id'], $pdo);
                         <p class="author"></p>
                         <p class="comment"></p>
                     </li>
-                    <div class="comment-input">
-                        <input type="text" name="comment" id="comment" value="">
+                    <div class="comment-container">
+                        <input class="comment-input" type="text" name="comment" id="comment" value="">
                         <input type="hidden" name="post-id" id="post-id" value=" <?= $post['id'] ?>">
                         <button class="send" type="submit">Send</button>
                     </div>
