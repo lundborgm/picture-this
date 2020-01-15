@@ -18,7 +18,11 @@ li {
 
 h3 {
   font-weight: bold;
-  font-size: 15px;
+  font-size: 16px;
+}
+
+small {
+  font-size: 12px;
 }
 
 .error {
@@ -111,10 +115,6 @@ nav a:hover {
   margin: 7vh 0 7vh 0;
 }
 
-.profile-page {
-  background-color: rgb(182, 182, 182);
-}
-
 .post-wrapper {
   display: flex;
   flex-direction: column;
@@ -159,16 +159,10 @@ h2 {
   padding: 10px;
 }
 
-.avatar {
-  width: 100px;
-  height: 100px;
-  border-radius: 100px;
-}
-
 .post-avatar {
   width: 40px;
   height: 40px;
-  border-radius: 100px;
+  border-radius: 100%;
   margin: 0 10px 0 10px;
 }
 
@@ -231,22 +225,4 @@ input {
   font-size: 14px;
   padding: 4px 8px;
   margin: 5px 0;
-}
-
-@media screen and (min-width: 450px) {
-  .post-wrapper {
-    width: 60%;
-  }
-}
-
-@media screen and (min-width: 800px) {
-  .post-wrapper {
-    width: 50%;
-  }
-}
-
-@media screen and (min-width: 1200px) {
-  .post-wrapper {
-    width: 40%;
-  }
 }

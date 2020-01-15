@@ -13,7 +13,9 @@ require __DIR__.'/../app/autoload.php';
 
     <link rel="stylesheet" href="/assets/styles/normalize.css">
     <link rel="stylesheet" href="/assets/styles/main.css">
+    <link rel="stylesheet" href="/assets/styles/profile.css">
     <link rel="stylesheet" href="/assets/styles/forms.css">
+    <link rel="stylesheet" href="/assets/styles/media.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
 </head>
 <body>

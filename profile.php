@@ -23,10 +23,16 @@ $posts = getPostById($_SESSION['user']['id'], $pdo);
 <p class="message"> <?php displayMessage(); ?> </p>
 
 <div class="profile-page">
-    <?php echo $_SESSION['user']['name']; ?>
-    <h2>Biography</h2>
-    <p><?php echo $biography; ?></p>
-    <img class="avatar" src="<?php echo "uploads/avatar/".$avatar; ?>" alt="">
+    <div class="profile-header">
+        <img class="avatar" src="<?php echo "uploads/avatar/".$avatar; ?>" alt="">
+
+        <div class="profile-info">
+            <h3><?php echo $_SESSION['user']['name']; ?></h3>
+            <p><?php echo $biography; ?></p>
+        </div>
+    </div>
+    <a href="editprofile.php"><button class="edit-btn">Edit profile information</button></a>
+
 
     <div class="follow">
         <?php $followers = countFollowers($userId, $pdo); ?>
@@ -34,9 +40,6 @@ $posts = getPostById($_SESSION['user']['id'], $pdo);
         <a href="<?php echo "followers.php?id=".$userId; ?>">Followers: <span class="followers"><?php echo $followers; ?></span></a>
         <a href="<?php echo "following.php?id=".$userId; ?>">Following: <span class="followers"><?php echo $following; ?></span></a>
     </div>
-
-    <a href="editprofile.php"><button><i class="fas fa-cog"></i></button></a>
-    <a href="newpost.php"><button>New post</button></a>
 </div>
 
 <div class="post-wrapper">

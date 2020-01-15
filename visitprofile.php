@@ -23,16 +23,13 @@ if ($profileId === (int)$_SESSION['user']['id']) {
 <p class="message"> <?php displayMessage(); ?> </p>
 
 <div class="profile-page">
-    <?php echo $user['name']; ?>
-    <h2>Biography</h2>
-    <p><?php echo $user['biography']; ?></p>
-    <img class="avatar" src="<?php echo "uploads/avatar/".$user['avatar_image']; ?>" alt="">
+    <div class="profile-header">
+        <img class="avatar" src="<?php echo "uploads/avatar/".$user['avatar_image']; ?>" alt="">
 
-    <div class="follow">
-        <?php $followers = countFollowers($profileId, $pdo); ?>
-        <?php $following = countFollowing($profileId, $pdo); ?>
-        <a href="<?php echo "followers.php?id=".$profileId; ?>">Followers: <span class="followers"><?php echo $followers; ?></span></a>
-        <a href="<?php echo "following.php?id=".$profileId; ?>">Following: <span class="followers"><?php echo $following; ?></span></a>
+        <div class="profile-info">
+            <h3><?php echo $user['name']; ?></h3>
+            <p><?php echo $user['biography']; ?></p>
+        </div>
     </div>
 
     <form class="follow-form" action="/app/users/follow.php" method="post">
@@ -45,6 +42,13 @@ if ($profileId === (int)$_SESSION['user']['id']) {
             <?php endif; ?>
         </button>
     </form>
+
+    <div class="follow">
+        <?php $followers = countFollowers($profileId, $pdo); ?>
+        <?php $following = countFollowing($profileId, $pdo); ?>
+        <a href="<?php echo "followers.php?id=".$profileId; ?>">Followers: <span class="followers"><?php echo $followers; ?></span></a>
+        <a href="<?php echo "following.php?id=".$profileId; ?>">Following: <span class="followers"><?php echo $following; ?></span></a>
+    </div>
 </div>
 
 <div class="post-wrapper">
