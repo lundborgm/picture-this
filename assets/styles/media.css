@@ -32,6 +32,10 @@
   .form {
     width: 40%;
   }
+
+  .navbar-bottom {
+    margin: 0 300px;
+  }
 }
 
 @media screen and (min-width: 1200px) {
