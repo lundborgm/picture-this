@@ -2,16 +2,44 @@
   .post-wrapper {
     width: 60%;
   }
+
+  .profile-page {
+    width: 60%;
+  }
+
+  .follow-list {
+    width: 50vw;
+  }
+
+  .form {
+    width: 60%;
+  }
 }
 
 @media screen and (min-width: 800px) {
   .post-wrapper {
     width: 50%;
   }
+
+  .profile-page {
+    width: 50%;
+  }
+
+  .follow-list {
+    width: 25vw;
+  }
+
+  .form {
+    width: 40%;
+  }
 }
 
 @media screen and (min-width: 1200px) {
   .post-wrapper {
+    width: 40%;
+  }
+
+  .profile-page {
     width: 40%;
   }
 }
