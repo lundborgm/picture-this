@@ -29,15 +29,13 @@ PHP assignment
 
 ## Installation
 
-* Clone down the project to your computer:
-```
-$ https://github.com/lundborgm/picture-this.git
-```
-* Start your server
-```
-$ php -S localhost:8000
-```
+* Clone down the project to your computer: ```$ https://github.com/lundborgm/picture-this.git```
+
+* Start your server ```$ php -S localhost:8000```
+
 * Open index.php
+
+* To be able to upload images and an avatar image, you'll have to create a folder called ```uploads``` in the root of the projekt, and a folder **inside** of uploads called ```avatar```.
 
 
 ## Testers
