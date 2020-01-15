@@ -27,8 +27,28 @@ PHP assignment
 * CSS
 * JavaScript
 
+## Installation
+
+* Clone down the project to your computer:
+```
+$ https://github.com/lundborgm/picture-this.git
+```
+* Start your server
+```
+$ php -S localhost:8000
+```
+* Open index.php
+
+
 ## Testers
 
+* Emelie Petersson
+* Mikaela Lundsgård
 
 ## Code review
 
+...
+
+## Author
+
+Michaela Lundborg
