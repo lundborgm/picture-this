@@ -1,5 +1,13 @@
-# picture-this
-PHP assignment
+# Picture this
+YRGO school assignment: create a Instagram clone.
+
+## Built with
+
+* PHP
+* SQLite
+* HTML
+* CSS
+* JavaScript
 
 ## Features
 
@@ -19,14 +27,6 @@ PHP assignment
 - [x] As a user I should be able to follow and unfollow other users.
 - [x] As a user I'm able to comment on a post.
 
-## Built with
-
-* PHP
-* SQLite
-* HTML
-* CSS
-* JavaScript
-
 ## Installation
 
 * Clone down the project to your computer: ```$ https://github.com/lundborgm/picture-this.git```
@@ -35,7 +35,7 @@ PHP assignment
 
 * Open index.php
 
-* To be able to upload images and an avatar image, you'll have to create a folder called ```uploads``` in the root of the projekt, and a folder **inside** of uploads called ```avatar```.
+* To be able to upload images and an avatar image, you'll have to create a folder called ```uploads``` in the root of the project, and a folder **inside** of uploads called ```avatar```
 
 
 ## Testers
