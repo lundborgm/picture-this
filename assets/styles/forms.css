@@ -7,7 +7,7 @@
   padding: 0 30px;
 }
 
-.form .hej {
+.form .question {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
@@ -35,6 +35,5 @@
 .signup-btn {
   border: none;
   color: var(--poppin);
-  /* font-weight: bold; */
   font-size: 15px;
 }

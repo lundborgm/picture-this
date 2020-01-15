@@ -23,7 +23,7 @@
         <button class="purple-btn" type="submit">Sign up</button>
     </form>
 
-    <div class="hej">
+    <div class="question">
         <h3>Already have an account?</h3>
         <a href="login.php"><button class="signup-btn">Log in</button></a>
     </div>

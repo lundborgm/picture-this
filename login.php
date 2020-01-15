@@ -17,7 +17,7 @@
         <button class="purple-btn" type="submit">Login</button>
     </form>
 
-    <div class="hej">
+    <div class="question">
         <h3>Don't have an account?</h3>
         <a href="signup.php"><button class="signup-btn">Sign up</button></a>
     </div>

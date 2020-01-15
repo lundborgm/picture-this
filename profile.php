@@ -47,7 +47,7 @@ $posts = getPostById($_SESSION['user']['id'], $pdo);
         <div class="profile-posts">
             <?php $likes = countLikes($post['id'], $pdo) ?>
 
-            <div class="post-header">
+            <div class="post-header profile">
                 <img class="post-avatar" src="<?php echo "uploads/avatar/".$avatar; ?>" alt="">
                 <h3> <?php echo $user['name']; ?> </h3>
                 <a href="<?php echo "editpost.php?id=".$post['id']."&author_id=".$post['author_id']; ?>"><button><i class="fas fa-edit"></i></button></a>
