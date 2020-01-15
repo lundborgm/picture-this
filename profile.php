@@ -31,7 +31,7 @@ $posts = getPostById($_SESSION['user']['id'], $pdo);
             <p><?php echo $biography; ?></p>
         </div>
     </div>
-    <a href="editprofile.php"><button class="edit-btn">Edit profile information</button></a>
+    <a href="editprofile.php"><button class="edit-btn">Edit profile</button></a>
 
 
     <div class="follow">

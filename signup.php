@@ -1,6 +1,6 @@
 <?php require __DIR__.'/views/header.php'; ?>
 
-<div class="form signup">
+<div class="form login">
     <h1>Picture This</h1>
     <p class="error"> <?php displayError(); ?> </p>
 

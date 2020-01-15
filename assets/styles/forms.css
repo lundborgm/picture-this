@@ -1,10 +1,10 @@
 .form {
   width: 100%;
-  height: 80vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   padding: 0 30px;
+  margin: 20px 0;
 }
 
 .form .question {
@@ -26,6 +26,10 @@
   border: 1px solid var(--poppin);
 }
 
+.form h2 {
+  padding: 15px 0;
+}
+
 .form .purple-btn {
   background-color: var(--poppin);
   border: 1px solid var(--poppin);
@@ -36,4 +40,52 @@
   border: none;
   color: var(--poppin);
   font-size: 15px;
+}
+
+.description {
+  border: 1px solid rgb(82, 82, 82);
+  border-radius: 10px;
+  width: 100%;
+  height: 20vh;
+}
+
+.biography {
+  border: 1px solid rgb(82, 82, 82);
+  border-radius: 10px;
+  width: 100%;
+  height: 10vh;
+}
+
+.form.post {
+  height: 100%;
+}
+
+.delete-post {
+  border: 1px solid var(--poppin);
+}
+
+/* upload and edit post */
+.form.post h1,
+.form.edit h1 {
+  margin: 0 0 20px 0;
+}
+
+.form.post .posts {
+  margin-bottom: 20px;
+}
+
+/* edit profile */
+.form.edit input {
+  width: 100%;
+  height: 40px;
+  border: 1px solid var(--light-grey);
+}
+
+/* signup/login */
+.form.login {
+  height: 80vh;
+}
+
+.form input.choose-image {
+  border: none;
 }

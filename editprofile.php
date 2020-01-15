@@ -16,65 +16,49 @@ $biography = $user['biography'];
 
 ?>
 
-<article>
-
+<div class="form edit">
     <h1>Edit profile</h1>
-    <h2>Update avatar</h2>
-    <img class="avatar" src="<?php echo "uploads/avatar/".$avatar ?>" alt="">
+
     <form action="app/users/editprofile.php" method="post" enctype="multipart/form-data">
+    <img class="avatar" src="<?php echo "uploads/avatar/".$avatar ?>" alt="">
         <div>
-            <label for="avatar">Avatar:</label>
-            <input type="file" accept=".png, .jpg, .jpeg" name="avatar" id="avatar">
-            <small class="form-text text-muted">Update your avatar picture</small>
+            <label for="avatar"><h2>Change avatar:</h2></label>
+            <input class="choose-image" type="file" accept=".png, .jpg, .jpeg" name="avatar" id="avatar">
         </div>
-        <button type="submit">Upload</button>
+        <button class="purple-btn" type="submit">Upload</button>
     </form>
 
-    <h2>Update biography</h2>
     <form action="app/users/editprofile.php" method="post">
         <div class="form-group">
-            <label for="biography">Biography:</label>
-            <textarea class="form-control" name="biography" id="biography" maxlength="100"><?php echo $biography; ?></textarea>
-            <small class="form-text text-muted">Change your bio</small>
-        </div><!-- /form-group -->
-
-        <button type="submit">Save changes</button>
+            <label for="biography"><h2>Update biography:</h2></label>
+            <textarea class="biography" name="biography" id="biography" maxlength="100"><?php echo $biography; ?></textarea>
+        </div>
+        <button class="purple-btn" type="submit">Save changes</button>
     </form>
 
-    <h2>Change email</h2>
     <form action="app/users/editprofile.php" method="post">
         <div class="form-group">
-            <label for="email">New email:</label>
+            <label for="email"><h2>Change email:</h2></label>
             <input class="form-control" type="email" name="email" id="email" value="<?php echo $_SESSION['user']['email']; ?>" required>
-            <small class="form-text text-muted">Change your email</small>
-        </div><!-- /form-group -->
-
-        <button type="submit">Save changes</button>
+        </div>
+        <button class="purple-btn" type="submit">Save changes</button>
     </form>
 
-    <h2>Change password</h2>
     <form action="app/users/changepassword.php" method="post">
-    <div class="form-group">
-        <label for="old-password">Old password:</label>
-        <input class="form-control" type="password" name="old-password" id="old-password" required>
-        <small class="form-text text-muted">Change your password</small>
-    </div><!-- /form-group -->
+        <h2>Change password</h2>
+        <div class="form-group">
+            <input class="form-control" type="password" name="old-password" id="old-password" placeholder="Old password" required>
+        </div>
 
-    <div class="form-group">
-        <label for="new-password">New password:</label>
-        <input class="form-control" type="password" name="new-password" id="new-password" required>
-        <small class="form-text text-muted">Change your password</small>
-    </div><!-- /form-group -->
+        <div class="form-group">
+            <input class="form-control" type="password" name="new-password" id="new-password" placeholder="New password" required>
+        </div>
 
-    <div class="form-group">
-        <label for="confirm-password">Confirm password:</label>
-        <input class="form-control" type="password" name="confirm-password" id="confirm-password" required>
-        <small class="form-text text-muted">Change your password</small>
-    </div><!-- /form-group -->
-
-        <button type="submit">Save changes</button>
+        <div class="form-group">
+            <input class="form-control" type="password" name="confirm-password" id="confirm-password" placeholder="Confirm password" required>
+        </div>
+        <button class="purple-btn" type="submit">Save changes</button>
     </form>
-
-</article>
+</div>
 
 <?php require __DIR__.'/views/footer.php'; ?>

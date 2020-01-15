@@ -9,28 +9,25 @@ if (!loggedIn()) {
 
 ?>
 
-<article>
+<div class="form post">
     <h1>New post</h1>
-
     <p class="error"> <?php displayError(); ?> </p>
     <p class="message"> <?php displayMessage(); ?> </p>
 
     <form action="app/posts/store.php" method="post" enctype="multipart/form-data">
 
-        <h2>Choose image</h2>
         <div class="form-group">
-            <label for="image">Image:</label>
-            <input type="file" accept=".png, .jpg, .jpeg, .gif" name="image" id="image">
+            <label for="image"><h2>Choose an image:</h2></label>
+            <input class="choose-image" type="file" accept=".png, .jpg, .jpeg, .gif" name="image" id="image" required>
         </div>
 
-        <h2>Description</h2>
         <div class="form-group">
-            <label for="content">Description:</label>
-            <textarea class="form-control" name="content" id="content" maxlength="100"></textarea>
+            <label for="content"><h2>Description:</h2></label>
+            <textarea class="description" name="content" id="content" maxlength="200" required></textarea>
         </div>
 
-        <button type="submit">Upload</button>
+        <button class="purple-btn" type="submit">Upload</button>
     </form>
-</article>
+</div>
 
 <?php require __DIR__.'/views/footer.php'; ?>

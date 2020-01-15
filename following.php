@@ -17,7 +17,7 @@ $authorId = (int)$_GET['id'];
 
 <?php $followingList = displayFollowingList($authorId, $pdo); ?>
 
-<ul>
+<ul class="follow-list">
     <?php foreach ($followingList as $following): ?>
         <li>
             <img class="post-avatar" src="<?php echo "uploads/avatar/".$following['avatar_image']; ?>" alt="">
