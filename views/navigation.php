@@ -1,3 +1,4 @@
+<?php if (isset($_SESSION['user'])): ?>
 <nav class="top-bar">
     <ul class="navbar-top">
         <li class="nav-item">
@@ -14,7 +15,6 @@
     </ul>
 </nav>
 
-<?php if (isset($_SESSION['user'])): ?>
     <nav class="bottom-bar">
         <ul class="navbar-bottom">
             <li class="nav-item">

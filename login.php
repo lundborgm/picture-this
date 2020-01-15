@@ -1,24 +1,26 @@
 <?php require __DIR__.'/views/header.php'; ?>
 
-<article>
-    <h1>Login:</h1>
+<div class="form login">
+    <h1>Picture This</h1>
 
     <form action="app/users/login.php" method="post">
         <div class="form-group">
-            <label for="email">Email:</label>
-            <input class="form-control" type="email" name="email" id="email" placeholder="email@email.com" required>
-            <small class="form-text text-muted">Please provide the your email address.</small>
-        </div><!-- /form-group -->
+            <!-- <label for="email">Email:</label> -->
+            <input class="form-control" type="email" name="email" id="email" placeholder="Email" required>
+        </div>
 
         <div class="form-group">
-            <label for="password">Password:</label>
-            <input class="form-control" type="password" name="password" id="password" required>
-            <small class="form-text text-muted">Please provide the your password (passphrase).</small>
-        </div><!-- /form-group -->
+            <!-- <label for="password">Password:</label> -->
+            <input class="form-control" type="password" name="password" id="password" placeholder="Password" required>
+        </div>
 
-        <button type="submit">Login</button>
+        <button class="purple-btn" type="submit">Login</button>
     </form>
-    <a href="signup.php"><button>Sign up</button></a>
-</article>
+
+    <div class="hej">
+        <h3>Don't have an account?</h3>
+        <a href="signup.php"><button class="signup-btn">Sign up</button></a>
+    </div>
+</div>
 
 <?php require __DIR__.'/views/footer.php'; ?>
