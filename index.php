@@ -15,7 +15,6 @@ if (!loggedIn()) {
         <div class="profile-posts">
             <?php $likes = countLikes($post['id'], $pdo) ?>
 
-            <!-- <h2> <?php echo $post['title']; ?> </h2> -->
             <div class="post-header">
                 <img class="post-avatar" src="<?php echo "uploads/avatar/".$post['avatar_image']; ?>" alt="">
                 <a class="visit-profile" href="<?php echo "visitprofile.php?id=".$post['author_id']; ?>"><h3> <?php echo $post['name']; ?> </h3></a>
@@ -37,6 +36,7 @@ if (!loggedIn()) {
                 <?php echo $likes; ?>
                 <?php endif; ?></p>
             </form>
+
             <div class="content">
                 <p><span class="name"><?php echo $post['name']; ?></span> <?php echo $post['content']; ?></p>
                 <small> <?php echo "Published: ".$post['date']; ?></small>
@@ -52,12 +52,11 @@ if (!loggedIn()) {
                         </li>
                     <?php endforeach; ?>
                 </ul>
-
                 <form class="comment-form" action="/app/posts/comments.php" method="post">
-                <li class="comments">
-                    <p class="author"></p>
-                    <p class="comment"></p>
-                </li>
+                    <li class="comments">
+                        <p class="author"></p>
+                        <p class="comment"></p>
+                    </li>
                     <div class="comment-input">
                         <input type="text" name="comment" id="comment" value="">
                         <input type="hidden" name="post-id" id="post-id" value=" <?= $post['id'] ?>">

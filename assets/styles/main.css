@@ -108,9 +108,9 @@ nav a:hover {
   margin: 7vh 0 7vh 0;
 }
 
-/* .profile-page {
-  background-color: rgb(228, 232, 255);
-} */
+.profile-page {
+  background-color: rgb(182, 182, 182);
+}
 
 article {
   margin: 0 20px 0 20px;
