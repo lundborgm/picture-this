@@ -6,7 +6,7 @@
 
         <li>
             <?php if (isset($_SESSION['user'])): ?>
-                <a  href="/app/users/logout.php"><i class="fas fa-sign-out-alt fa-1x"></i></a>
+                <a class="logout" href="/app/users/logout.php"><i class="fas fa-sign-out-alt fa-1x"></i></a>
             <?php else: ?>
                 <a href="/app/users/login.php"><i class="fas fa-sign-in-alt fa-1x"></i></a>
             <?php endif; ?>

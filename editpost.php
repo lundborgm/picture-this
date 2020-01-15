@@ -45,7 +45,7 @@ $posts = editPost($_GET['id'], $pdo);
     </form>
 
     <form action="<?php echo "app/posts/delete.php?id=".$post['id']."&author_id=".$post['author_id']; ?>" method="post">
-    <button type="submit">Delete post</button>
+    <button class="delete-post" type="submit">Delete post</button>
     </form>
 
 </article>

@@ -42,10 +42,13 @@ $ php -S localhost:8000
 
 ## Testers
 
-* Emelie Petersson
-* Mikaela Lundsgård
+* [Emelie Petersson](https://github.com/emeliepetersson)
+* [Mikaela Lundsgård](https://github.com/mikaelaalu)
+* [Bernhard Stedt](https://github.com/Vehx)
 
 ## Code review
+
+By [Jakob Fridmar](https://github.com/JakobClausen)
 
 ...
 
