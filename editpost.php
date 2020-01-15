@@ -25,27 +25,24 @@ $posts = editPost($_GET['id'], $pdo);
         </article>
     <?php endforeach; ?>
 
-
     <h1>Edit post</h1>
     <form action="<?php echo "app/posts/update.php?id=".$post['id']."&author_id=".$post['author_id']; ?>" method="post" enctype="multipart/form-data">
-
         <h2>Image</h2>
         <div class="form-group">
             <label for="image">Image:</label>
             <input type="file" accept=".png, .jpg, .jpeg, .gif" name="image" id="image" required>
         </div>
-
         <h2>Description</h2>
         <div class="form-group">
             <label for="content">Description:</label>
             <textarea class="form-control" name="content" id="content" maxlength="100" required></textarea>
         </div>
-
         <button type="submit">Save changes</button>
     </form>
 
     <form action="<?php echo "app/posts/delete.php?id=".$post['id']."&author_id=".$post['author_id']; ?>" method="post">
-    <button class="delete-post" type="submit">Delete post</button>
+        <input type="hidden" name="post-image" value="<?php echo $post['image'] ?>">
+        <button class="delete-post" type="submit">Delete post</button>
     </form>
 
 </article>

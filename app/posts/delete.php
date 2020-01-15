@@ -12,6 +12,7 @@ if (!loggedIn()) {
         $postId = filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT);
         $authorId = filter_var($_GET['author_id'], FILTER_SANITIZE_NUMBER_INT);
         $userId = $_SESSION['user']['id'];
+        $postImage = filter_var($_POST['post-image'], FILTER_SANITIZE_STRING);
 
         // The users should only be able to delete their own posts
         if ($userId !== $authorId) {
@@ -34,8 +35,8 @@ if (!loggedIn()) {
             ':author_id' => $authorId,
         ]);
 
-        // $path = '../../uploads/' . $postName;
-        // unlink($path);
+        $path = '../../uploads/' . $postImage;
+        unlink($path);
 
         $_SESSION['messages'] = ["Post deleted!"];
         redirect('/profile.php');
