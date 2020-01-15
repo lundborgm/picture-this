@@ -33,6 +33,11 @@
   margin-top: 10px;
 }
 
+.follow a {
+  font-size: 14px;
+  font-weight: bold;
+}
+
 .follow-btn,
 .edit-btn {
   width: 100%;

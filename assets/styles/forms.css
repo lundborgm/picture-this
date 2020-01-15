@@ -86,6 +86,12 @@
   height: 80vh;
 }
 
+.form.login h1.login {
+  display: flex;
+  justify-content: center;
+  color: var(--poppin);
+}
+
 .form input.choose-image {
   border: none;
 }
