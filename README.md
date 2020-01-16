@@ -48,7 +48,14 @@ YRGO school assignment: create a Instagram clone.
 
 By [Jakob Fridmar](https://github.com/JakobClausen)
 
-...
+* Good structure to in the code. 
+* Upload directory did not upload due to ignored in .gitignore. therefore there was no place for my images to go when I used the site.
+* Impressed with thought where everything is liked together with minimal code. Like putting autoload in the header. 
+* Good with confirmation if form request was successful or not. 
+* Simple and easy to follow CSS
+* You can’t change the description of a post without changing the picture. 
+
+Good job!
 
 ## Author
 
