@@ -1,19 +1,30 @@
-<?php if (isset($_SESSION['user'])): ?>
-<nav class="top-bar">
-    <ul class="navbar-top">
-        <li class="nav-item">
-            <a class="nav-link" href="/index.php"></a>
-        </li>
+<?php if (isset($_SESSION['user'])) : ?>
+    <nav class="top-bar">
+        <ul class="navbar-top">
+            <li class="nav-item">
+                <a class="nav-link" href="/index.php"></a>
+            </li>
 
-        <li>
-            <?php if (isset($_SESSION['user'])): ?>
+            <li>
+                <?php if (isset($_SESSION['user'])) : ?>
+
+            <li>
+                <form action="/app/posts/search.php" method="post" class="search-form">
+                    <input class="search-input" type="text" name="search" id="comment" value="">
+                    <button type="submit" class="send"><i type='submit' class="fas fa-search fa-1x"></i></button> </form>
+                </form>
+
+            </li>
+            <li>
                 <a class="logout" href="/app/users/logout.php"><i class="fas fa-sign-out-alt fa-1x"></i></a>
-            <?php else: ?>
-                <a href="/app/users/login.php"><i class="fas fa-sign-in-alt fa-1x"></i></a>
-            <?php endif; ?>
+            </li>
+            </div>
+        <?php else : ?>
+            <a href="/app/users/login.php"><i class="fas fa-sign-in-alt fa-1x"></i></a>
+        <?php endif; ?>
         </li>
-    </ul>
-</nav>
+        </ul>
+    </nav>
 
     <nav class="bottom-bar">
         <ul class="navbar-bottom">
@@ -26,7 +37,7 @@
             </li>
 
             <li>
-                <a  href="/profile.php"><i class="fas fa-user fa-1x"></i></a>
+                <a href="/profile.php"><i class="fas fa-user fa-1x"></i></a>
             </li>
         </ul>
     </nav>

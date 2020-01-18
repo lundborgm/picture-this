@@ -1,12 +1,16 @@
 <?php
+//require __DIR__ . '/app/autoload.php';
 
 require __DIR__.'/views/header.php';
-
-$allPosts = getAllPosts($pdo);
-
-if (!loggedIn()) {
+if (loggedIn()) {
+    
+}else{
     redirect('/login.php');
 }
+  
+$allPosts = getAllPosts($pdo);
+
+
 
 ?>
 

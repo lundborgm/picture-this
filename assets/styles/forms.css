@@ -95,3 +95,16 @@
 .form input.choose-image {
   border: none;
 }
+/*search*/
+.search-form{
+    display: flex;
+    flex-direction: row;
+}
+
+.search-input{
+   border: 1px solid var(--light-grey);
+}
+.logout{
+  position: relative;
+  top:8px;
+}
