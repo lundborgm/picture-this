@@ -9,8 +9,9 @@
                 <?php if (isset($_SESSION['user'])) : ?>
 
             <li>
-                <form action="/app/posts/search.php" method="post" class="search-form">
-                    <input class="search-input" type="text" name="search" id="comment" value="">
+                <form action="/searchView.php" method="post" class="search-form">
+                    <label for="search"></label>
+                    <input class="search-input" type="text" name="search" id="search">
                     <button type="submit" class="send"><i type='submit' class="fas fa-search fa-1x"></i></button> </form>
                 </form>
 
