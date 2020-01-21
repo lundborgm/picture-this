@@ -1,10 +1,10 @@
 "use strict";
 
-const search = document.querySelectorAll(".search-form");
+const search = document.querySelector(".search-form");
 
-search[0].addEventListener("submit", e => {
+search.addEventListener("submit", e => {
     e.preventDefault();
-    const formData = new FormData(search[0]);
+    const formData = new FormData(search);
         
     fetch("http://localhost:8000/app/posts/search.php", {
       method: "POST",
@@ -15,10 +15,16 @@ search[0].addEventListener("submit", e => {
         return response.json();
       })
       .then(json => {
-        // Now it is possible to use the JSON as a normal object.
-            console.log(json);
-        //link to new page
-        
-      });
+          
+          if (!window.location.toString().includes("searchView.php")){
+              window.location.href = "http://localhost:8000/searchView.php";
+            }
+              
+                              
+                        
+            
+                      console.log(json);
+                    
+                    });
   });
 

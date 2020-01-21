@@ -33,6 +33,12 @@ $statementUsers->execute([
 ]);
 $usersSearch = $statementUsers->fetchAll(PDO::FETCH_ASSOC);
 
-    echo json_encode($usersSearch);
+$usersAndPost =[
+    'users' => $usersSearch,
+    'posts' => $postSearch
+];
+
+    echo json_encode($usersAndPost);
+   
 }  
 ?>
