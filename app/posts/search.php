@@ -4,6 +4,8 @@ header('Content-Type: application/json');
 
 if(isset($_POST['search'])){
     $search  =filter_var($_POST['search'],FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+  
+
     $post = "SELECT users.name, posts.* FROM users
           LEFT JOIN posts
            ON posts.author_id = users.id WHERE name LIKE ?" ;
@@ -32,6 +34,7 @@ $statementUsers->execute([
     "%".$search."%",
 ]);
 $usersSearch = $statementUsers->fetchAll(PDO::FETCH_ASSOC);
+
 
 $usersAndPost =[
     'users' => $usersSearch,

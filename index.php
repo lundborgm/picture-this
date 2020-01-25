@@ -3,11 +3,10 @@
 
 require __DIR__.'/views/header.php';
 if (loggedIn()) {
-    
-}else{
+} else {
     redirect('/login.php');
 }
-  
+
 $allPosts = getAllPosts($pdo);
 
 
