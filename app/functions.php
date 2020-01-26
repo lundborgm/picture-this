@@ -109,6 +109,35 @@ function getPostById(int $profileId, PDO $pdo): array
     return $posts;
 }
 
+
+function getPostBySearch($pdo,$search)
+{   
+      
+    if($search === NULL){
+        return getAllPosts($pdo);
+       
+    }else{
+
+        
+        $post = "SELECT users.name, posts.* FROM users
+          LEFT JOIN posts
+           ON posts.author_id = users.id WHERE name LIKE ?";
+        $statementPost = $pdo->prepare($post);
+        
+        if (!$statementPost) {
+            die(var_dump($pdo->errorInfo()));
+        }
+        
+        $statementPost->execute([
+            "%" . $search . "%",
+            ]);
+            $postSearch = $statementPost->fetchAll(PDO::FETCH_ASSOC);
+            
+            return $postSearch;
+        }
+    
+}
+
 /**
  * Select a specific post to be able to update it
  *
@@ -362,7 +391,7 @@ function displayFollowingList(int $userId, PDO $pdo): array
  */
 function getComments(int $postId, PDO $pdo): array
 {
-    $statement = $pdo->prepare('SELECT comment, name FROM comments INNER JOIN users on user_id = users.id WHERE post_id = :post_id');
+    $statement = $pdo->prepare('SELECT comments.id, comment, name FROM comments INNER JOIN users on user_id = users.id WHERE post_id = :post_id');
 
     if (!$statement) {
         die(var_dump($pdo->errorInfo()));

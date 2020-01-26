@@ -2,6 +2,7 @@
 
 const commentForms = document.querySelectorAll(".comment-form");
 
+
 commentForms.forEach(form => {
   form.addEventListener("submit", e => {
     e.preventDefault();
@@ -25,6 +26,7 @@ commentForms.forEach(form => {
 
         comment.innerHTML = newComment;
         author.innerHTML = newAuthor;
+        location.reload();
       });
   });
 });

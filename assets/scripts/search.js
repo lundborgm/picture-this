@@ -1,26 +1,32 @@
 "use strict";
+
+
 const getUrl =(json)=>{
+  if(json['search'] === ""){
+    window.location.href = searchView;
+  }else{
+
     window.location.href =
-      searchView +
-      "?usr=" +
-      json["users"].length +
-      "&" +
-      "posts=" +
-      json["users"].length;
+    searchView +
+    "?usr=" +
+    json["users"].length
+    +"&"+"search="+json["search"];
+        }
       }
 
-  const searchResult =(elementArray,json,event)=>{      
+  const searchResult =(elementArray,json,event, userOrPost)=>{      
       let forEachNum = 0;  
         elementArray.forEach(element => {
         switch (event) {
           case "img":
-            element.src ="uploads/avatar/" + json["users"][forEachNum].avatar_image;
+            element.src ="uploads/avatar/" + json[userOrPost][forEachNum].avatar_image;
             break;
           case "name":
-            element.innerHTML =json["users"][forEachNum].name;
+            element.innerHTML = json[userOrPost][forEachNum].name;
             break;
             case "link":
-            element.href = "visitprofile.php?id=" + json["users"][forEachNum].id
+            element.href =
+              "visitprofile.php?id=" + json[userOrPost][forEachNum].id;
         }
         forEachNum++;
           
@@ -29,12 +35,13 @@ const getUrl =(json)=>{
     }
     
 
-
+//!ALL USERS
 const users = document.querySelectorAll(".search-box");
 const imgAvatar = document.querySelectorAll(".search-avatar");
 const userName = document.querySelectorAll(".search-box h3");
 const userLink = document.querySelectorAll(".search-box a");
 
+//! FETCH SEARCH
 const search = document.querySelector(".search-form");
 const searchView = "http://localhost:8000/searchView.php";
 
@@ -52,9 +59,8 @@ search.addEventListener("submit", e => {
       })
       .then(json => { 
             localStorage.setItem('json',JSON.stringify(json))
-               getUrl(json)
-            
-        
+          ''
+            getUrl(json)
       });
 
 
@@ -63,12 +69,12 @@ search.addEventListener("submit", e => {
     const searchJson  = JSON.parse(localStorage.getItem("json"));
     // top links to users
     if(searchJson !== null){
-      searchResult(imgAvatar,searchJson,"img")
-      searchResult(userName,searchJson,"name");
-      searchResult(userLink, searchJson, "link");
+      searchResult(imgAvatar,searchJson,"img","users")
+      searchResult(userName, searchJson, "name", "users");
+      searchResult(userLink, searchJson, "link","users");
     }
   
 
-      console.log(searchJson);
+      
 
      localStorage.removeItem("json");

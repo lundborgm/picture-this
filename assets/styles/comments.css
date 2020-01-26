@@ -1,5 +1,6 @@
 .comment-wrapper {
   padding: 0 10px;
+
 }
 
 .comment-form {
@@ -28,15 +29,50 @@
 .comment-list {
   display: flex;
   flex-direction: column;
+  padding: 4px;
 }
+.comment-box{
+  margin-bottom:10px;
 
+}
 .comments {
   display: flex;
   flex-direction: row;
-  margin-bottom: 10px;
+ 
 }
-
+.comment{
+  width:60%;
+  word-wrap: break-word;
+ 
+}
 .author {
   font-weight: bold;
   margin: 0 5px 0 0;
+}
+.edit-box{
+  display: flex;
+  margin:3px 0 10px 0;
+}
+.edit-box button{
+  width:40px;
+  padding: 0px;
+  font-size:small;
+}
+.reply-text{
+  margin:-10px 0 8px 35px ;
+  font-size: 89%;
+  display:flex; 
+   flex-wrap: wrap;
+
+}
+.reply-edit{
+  margin-left:35px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.reply-edit button{
+  width:40px;
+  padding: 0px;
+  font-size:small;
 }
