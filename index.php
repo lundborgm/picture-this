@@ -72,35 +72,42 @@ $allPosts = getAllPosts($pdo);
                                             <button type="submit" class="send delete-comment" name="delete-comment">Delete</button>
                                         </form>
                                     <?php endif; ?>
+
                                     <div class="reply-container">
                                         <button class="send show-replyBtn">Reply</button>
                                         <form class="reply-form hide-reply" method="post" action="/app/posts/comments.php">
+                                            <input type="text" name="reply-text" class="reply-input">
                                             <input type="hidden" name="comment-id" value="<?php echo $comment['id']; ?>">
                                             <input type="hidden" name="post-id" id="post-id" value=" <?= $post['id'] ?>">
                                             <input type="hidden" name="comment-name" value="<?php echo $_SESSION['user']['name']; ?>">
-                                            <input type="text" name="reply-text" class="reply-input">
                                             <button type="submit" class="send reply-comment">Send</button>
                                         </form>
                                     </div>
                                 </div>
                             </li>
-                            <li class="reply-text">
-                                <!--foreach loop-->
-                                <p class="author">k<?php ?></p>
-                                <p class="comment">k<?php ?></p>
+                            <?php $replys = getReply($comment['id'], $pdo); ?>
+                            <?php foreach ($replys as $reply) : ?>
+                                <div class="replyComment-box">
+                                    <li class="reply-text">
+                                        <p class="author"><?php echo $reply['name'] ?></p>
+                                        <p class="comment"><?php echo $reply['reply_comment'] ?></p>
+                                    </li>
+                                    <?php if ($_SESSION['user']['id'] === $post['author_id'] || $_SESSION['user']['id'] === $reply['user_id']) : ?>
+                                    <li class='reply-edit'>
+                                            <form class="replyEdit-form" method="post" action="/app/posts/editComment.php">
+                                                <input class="newText" type="hidden" name="newReply" value="">
+                                                <input type="hidden" name="date" value="<?php echo $reply['date'];?>">
+                                                <button type="submit" class="send editReply-comment">Edit</button>
+                                            </form>
 
-                            </li>
-                            <li class='reply-edit'>
-                                <?php if ($_SESSION['user']['id'] === $post['author_id']) : ?>
-                                    <form action="post" method="post">
-                                        <button type="submit" class="send edit-comment">Edit</button>
-                                    </form>
-                                    <form class="delete-comment-form" action="/app/posts/deleteComment.php" method="post" enctype="multipart/form-data">
-                                        <input type="hidden" name="comment-id" value="<?php echo $comment['id'] ?>">
-                                        <button type="submit" class="send delete-comment" name="delete-comment">Delete</button>
-                                    </form>
+                                            <form class="delete-comment-form" action="/app/posts/deleteComment.php" method="post" enctype="multipart/form-data">
+                                            <input type="hidden" name="date" value="<?php echo $reply['date'] ?>">
+                                            <button type="submit" class="send delete-comment" name="delete-reply">Delete</button>
+                                        </form>
+                                    </div>
+                                </li>
                                 <?php endif; ?>
-                            </li>
+                        <?php endforeach; ?>
                         </div>
                     <?php endforeach; ?>
                 </ul>

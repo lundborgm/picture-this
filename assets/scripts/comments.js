@@ -23,7 +23,7 @@ commentForms.forEach(form => {
         const newAuthor = json.name;
         const comment = e.target.querySelector(".comment");
         const author = e.target.querySelector(".author");
-
+      
         comment.innerHTML = newComment;
         author.innerHTML = newAuthor;
         location.reload();
@@ -55,8 +55,11 @@ showReplyBtns.forEach(showReplyBtn => {
 const replyForm = document.querySelectorAll('.reply-form')
 replyForm.forEach(form => {
     form.addEventListener('submit',e=>{
-     // e.preventDefault()
+     e.preventDefault()
             const formData = new FormData(form);
+            const changeBtn = form.parentNode.querySelector('button')
+            const inputText = form.parentNode.querySelector("button");
+            changeBtn.textContent = 'Reply';
 
     fetch("http://localhost:8000/app/posts/comments.php", {
       method: "POST",
@@ -68,12 +71,15 @@ replyForm.forEach(form => {
         return response.json();
       })
       .then(json => {
-        console.log(json);
+        location.reload();
+        
+        console.log()
       })
 
+      form.classList.add('hide-reply')
 
+     
     })
-
 
 
 })

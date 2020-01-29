@@ -26,11 +26,11 @@ $usrAmount = $_GET['usr'];
 
 <!-- posts -->
 
-<?php $allPosts = getPostBySearch($pdo,$_GET['search']); ?>
+<?php $allPosts = getPostBySearch($pdo, $_GET['search']); ?>
 <div class="post-wrapper">
     <?php foreach ($allPosts as $post) : ?>
         <div class="profile-posts">
-            <?php $likes = countLikes($post['id'], $pdo) ////gets all likes skip 
+            <?php $likes = countLikes($post['id'], $pdo)
             ?>
 
             <div class="post-header">
@@ -66,10 +66,63 @@ $usrAmount = $_GET['usr'];
             <div class="comment-wrapper">
                 <ul class="comment-list">
                     <?php foreach ($comments as $comment) : ?>
-                        <li class="comments">
-                            <p class="author"><?php echo $comment['name']; ?></p>
-                            <p class="comment"><?php echo $comment['comment']; ?></p>
-                        </li>
+                        <div class="comment-box">
+                            <li class="comments">
+                                <p class="author"><?php echo $comment['name']; ?></p>
+                                <p class="comment"><?php echo $comment['comment']; ?></p>
+                            </li>
+                            <!-- you working here-->
+                            <li>
+                                <div class="edit-box">
+                                    <?php if ($_SESSION['user']['id'] === $post['author_id'] || $_SESSION['user']['id'] === $comment['user_id']) :  ?>
+
+                                        <form class="edit-form" method="post" action="/app/posts/editComment.php">
+                                            <input class="newText" type="hidden" name="newComment" value="">
+                                            <input type="hidden" name="comment-id" value="<?php echo $comment['id'] ?>">
+                                            <button type="submit" class="send edit-comment">Edit</button>
+                                        </form>
+                                        <form class="delete-comment-form" action="/app/posts/deleteComment.php" method="post" enctype="multipart/form-data">
+                                            <input type="hidden" name="comment-id" value="<?php echo $comment['id'];  ?>">
+                                            <button type="submit" class="send delete-comment" name="delete-comment">Delete</button>
+                                        </form>
+                                    <?php endif; ?>
+
+                                    <div class="reply-container">
+                                        <button class="send show-replyBtn">Reply</button>
+                                        <form class="reply-form hide-reply" method="post" action="/app/posts/comments.php">
+                                            <input type="text" name="reply-text" class="reply-input">
+                                            <input type="hidden" name="comment-id" value="<?php echo $comment['id']; ?>">
+                                            <input type="hidden" name="post-id" id="post-id" value=" <?= $post['id'] ?>">
+                                            <input type="hidden" name="comment-name" value="<?php echo $_SESSION['user']['name']; ?>">
+                                            <button type="submit" class="send reply-comment">Send</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </li>
+                            <?php $replys = getReply($comment['id'], $pdo); ?>
+                            <?php foreach ($replys as $reply) : ?>
+                                <div class="replyComment-box">
+                                    <li class="reply-text">
+                                        <p class="author"><?php echo $reply['name'] ?></p>
+                                        <p class="comment"><?php echo $reply['reply_comment'] ?></p>
+                                    </li>
+                                    <?php if ($_SESSION['user']['id'] === $post['author_id'] || $_SESSION['user']['id'] === $reply['user_id']) : ?>
+                                        <li class='reply-edit'>
+                                            <form class="replyEdit-form" method="post" action="/app/posts/editComment.php">
+                                                <input class="newText" type="hidden" name="newReply" value="">
+                                                <input type="hidden" name="date" value="<?php echo $reply['date']; ?>">
+                                                <button type="submit" class="send editReply-comment">Edit</button>
+                                            </form>
+
+                                            <form class="delete-comment-form" action="/app/posts/deleteComment.php" method="post" enctype="multipart/form-data">
+                                                <input type="hidden" name="date" value="<?php echo $reply['date'] ?>">
+                                                <button type="submit" class="send delete-comment" name="delete-reply">Delete</button>
+                                            </form>
+                                </div>
+                                </li>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                        </div>
                     <?php endforeach; ?>
                 </ul>
                 <form class="comment-form" action="/app/posts/comments.php" method="post">
@@ -87,6 +140,7 @@ $usrAmount = $_GET['usr'];
         </div>
     <?php endforeach; ?>
 </div>
+
 
 
 <?php require __DIR__ . '/views/footer.php'; ?>

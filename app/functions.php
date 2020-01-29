@@ -431,3 +431,35 @@ function getUsernameFromComment(int $userId, PDO $pdo): array
 
     return $username;
 }
+
+
+/**
+ * Display replays
+ *
+ * @param integer $userId
+ *
+ * @param PDO $pdo
+ *
+ * @return array
+ */
+function getReply(int $commentId,PDO $pdo):array
+{
+    $queryFetch = "SELECT reply_comments.reply_comment, reply_comments.user_id, reply_comments.date, users.name
+                    FROM reply_comments LEFT JOIN users ON reply_comments.user_id = users.id WHERE comment_id =:comment_id" ;
+    $statement = $pdo -> prepare($queryFetch);
+
+    if (!$statement) {
+        die(var_dump($pdo->errorInfo()));
+    }
+
+
+    $statement -> execute([
+        ':comment_id' => $commentId,
+    ]);
+
+    $replys = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+    return $replys;
+        
+}
+ 

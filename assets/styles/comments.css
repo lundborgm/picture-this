@@ -85,3 +85,9 @@ border:1px solid greenyellow
 .hide-reply{
   display: none;
 }
+.reply-edit{
+  margin-top: -15px;
+  margin-bottom: 15px;
+  margin-left: 26px;
+  font-size: 80%;
+}
