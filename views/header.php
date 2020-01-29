@@ -1,6 +1,16 @@
 <?php
 // Always start by loading the default application setup.
 require __DIR__ . '/../app/autoload.php';
+$uri = $_SERVER['REQUEST_URI'];
+if (!loggedIn() ) {
+    
+   if($uri === '/login.php' || $uri === '/signup.php'){
+
+} else{
+       redirect('/login.php');
+    } 
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

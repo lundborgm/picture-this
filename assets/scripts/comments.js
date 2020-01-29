@@ -37,10 +37,11 @@ showReplyBtns.forEach(showReplyBtn => {
   showReplyBtn.addEventListener("click", e => {
     
     const ShowReplyForm = showReplyBtn.parentNode.querySelector('.reply-form').classList
-    
+    const replyForm = showReplyBtn.parentNode.querySelector(".reply-form");
     if(ShowReplyForm[1] === 'hide-reply'){
       ShowReplyForm.remove('hide-reply')
-      showReplyBtn.textContent = "cancel";
+        replyForm.querySelector('.reply-input').focus();
+      showReplyBtn.textContent = "Cancel";
         
     }else{
       ShowReplyForm.add('hide-reply');
@@ -58,7 +59,6 @@ replyForm.forEach(form => {
      e.preventDefault()
             const formData = new FormData(form);
             const changeBtn = form.parentNode.querySelector('button')
-            const inputText = form.parentNode.querySelector("button");
             changeBtn.textContent = 'Reply';
 
     fetch("http://localhost:8000/app/posts/comments.php", {
@@ -72,8 +72,6 @@ replyForm.forEach(form => {
       })
       .then(json => {
         location.reload();
-        
-        console.log()
       })
 
       form.classList.add('hide-reply')

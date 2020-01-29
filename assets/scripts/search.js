@@ -44,37 +44,33 @@ const userLink = document.querySelectorAll(".search-box a");
 //! FETCH SEARCH
 const search = document.querySelector(".search-form");
 const searchView = "http://localhost:8000/searchView.php";
+if(search){
 
-search.addEventListener("submit", e => {
-    e.preventDefault();
-    const formData = new FormData(search);
-        
-    fetch("http://localhost:8000/app/posts/search.php", {
-      method: "POST",
-      body: formData
-    })
-      .then(response => {
-        // Take the response Promise and return it as JSON.
-        return response.json();
-      })
-      .then(json => { 
-            localStorage.setItem('json',JSON.stringify(json))
-          ''
-            getUrl(json)
-      });
+                    search.addEventListener("submit", e => {
+                      e.preventDefault();
+                      const formData = new FormData(search);
 
+                      fetch("http://localhost:8000/app/posts/search.php", {
+                        method: "POST",
+                        body: formData
+                      })
+                        .then(response => {
+                          // Take the response Promise and return it as JSON.
+                          return response.json();
+                        })
+                        .then(json => {
+                          localStorage.setItem("json", JSON.stringify(json));
+                          ("");
+                          getUrl(json);
+                        });
+                    });
+                    const searchJson = JSON.parse(localStorage.getItem("json"));
+                    // top links to users
+                    if (searchJson !== null) {
+                      searchResult(imgAvatar, searchJson, "img", "users");
+                      searchResult(userName, searchJson, "name", "users");
+                      searchResult(userLink, searchJson, "link", "users");
+                    }
 
-      
-    });
-    const searchJson  = JSON.parse(localStorage.getItem("json"));
-    // top links to users
-    if(searchJson !== null){
-      searchResult(imgAvatar,searchJson,"img","users")
-      searchResult(userName, searchJson, "name", "users");
-      searchResult(userLink, searchJson, "link","users");
-    }
-  
-
-      
-
-     localStorage.removeItem("json");
+                    localStorage.removeItem("json");
+                  }
