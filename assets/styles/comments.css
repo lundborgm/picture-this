@@ -63,7 +63,9 @@
   font-size: 89%;
   display:flex; 
    flex-wrap: wrap;
-
+}
+.reply-text button{
+  margin-left:4px;
 }
 .reply-edit{
   margin-left:35px;
@@ -75,4 +77,11 @@
   width:40px;
   padding: 0px;
   font-size:small;
+}
+.confirm-btn{
+  width: 50px !important;
+border:1px solid greenyellow
+}
+.hide-reply{
+  display: none;
 }

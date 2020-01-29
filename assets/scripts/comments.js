@@ -1,7 +1,7 @@
 "use strict";
 
 const commentForms = document.querySelectorAll(".comment-form");
-
+//comment
 
 commentForms.forEach(form => {
   form.addEventListener("submit", e => {
@@ -30,3 +30,50 @@ commentForms.forEach(form => {
       });
   });
 });
+//reply comment
+const showReplyBtns  = document.querySelectorAll('.show-replyBtn');
+showReplyBtns.forEach(showReplyBtn => {
+  
+  showReplyBtn.addEventListener("click", e => {
+    
+    const ShowReplyForm = showReplyBtn.parentNode.querySelector('.reply-form').classList
+    
+    if(ShowReplyForm[1] === 'hide-reply'){
+      ShowReplyForm.remove('hide-reply')
+      showReplyBtn.textContent = "cancel";
+        
+    }else{
+      ShowReplyForm.add('hide-reply');
+      showReplyBtn.textContent = "Reply";
+    }
+
+  });  
+
+});
+//post
+
+const replyForm = document.querySelectorAll('.reply-form')
+replyForm.forEach(form => {
+    form.addEventListener('submit',e=>{
+     // e.preventDefault()
+            const formData = new FormData(form);
+
+    fetch("http://localhost:8000/app/posts/comments.php", {
+      method: "POST",
+      body: formData
+    })
+      .then(response => {
+        // Take the response Promise and return it as JSON.
+        
+        return response.json();
+      })
+      .then(json => {
+        console.log(json);
+      })
+
+
+    })
+
+
+
+})

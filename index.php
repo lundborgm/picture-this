@@ -1,7 +1,6 @@
 <?php
-//require __DIR__ . '/app/autoload.php';
-
 require __DIR__ . '/views/header.php';
+//require __DIR__ . '/app/autoload.php';
 if (loggedIn()) {
 } else {
     redirect('/login.php');
@@ -52,6 +51,7 @@ $allPosts = getAllPosts($pdo);
             <div class="comment-wrapper">
                 <ul class="comment-list">
                     <?php foreach ($comments as $comment) : ?>
+
                         <div class="comment-box">
                             <li class="comments">
                                 <p class="author"><?php echo $comment['name']; ?></p>
@@ -60,14 +60,28 @@ $allPosts = getAllPosts($pdo);
                             <!-- you working here-->
                             <li>
                                 <div class="edit-box">
-                                    <?php if ($_SESSION['user']['id'] === $post['author_id']) : ?>
-                                        <button class="send edit-comment">Edit</button>
-                                        <form class="delete-comment-form" action="/app/posts/deleteComment.php" method="post" enctype="multipart/form-data">
+                                    <?php if ($_SESSION['user']['id'] === $post['author_id'] || $_SESSION['user']['id'] === $comment['user_id']) :  ?>
+
+                                        <form class="edit-form" method="post" action="/app/posts/editComment.php">
+                                            <input class="newText" type="hidden" name="newComment" value="">
                                             <input type="hidden" name="comment-id" value="<?php echo $comment['id'] ?>">
+                                            <button type="submit" class="send edit-comment">Edit</button>
+                                        </form>
+                                        <form class="delete-comment-form" action="/app/posts/deleteComment.php" method="post" enctype="multipart/form-data">
+                                            <input type="hidden" name="comment-id" value="<?php echo $comment['id'];  ?>">
                                             <button type="submit" class="send delete-comment" name="delete-comment">Delete</button>
                                         </form>
                                     <?php endif; ?>
-                                    <button class="send reply-comment">Reply</button>
+                                    <div class="reply-container">
+                                        <button class="send show-replyBtn">Reply</button>
+                                        <form class="reply-form hide-reply" method="post" action="/app/posts/comments.php">
+                                            <input type="hidden" name="comment-id" value="<?php echo $comment['id']; ?>">
+                                            <input type="hidden" name="post-id" id="post-id" value=" <?= $post['id'] ?>">
+                                            <input type="hidden" name="comment-name" value="<?php echo $_SESSION['user']['name']; ?>">
+                                            <input type="text" name="reply-text" class="reply-input">
+                                            <button type="submit" class="send reply-comment">Send</button>
+                                        </form>
+                                    </div>
                                 </div>
                             </li>
                             <li class="reply-text">
@@ -78,8 +92,8 @@ $allPosts = getAllPosts($pdo);
                             </li>
                             <li class='reply-edit'>
                                 <?php if ($_SESSION['user']['id'] === $post['author_id']) : ?>
-                                    <form action="post">
-                                        <button class="send edit-comment">Edit</button>
+                                    <form action="post" method="post">
+                                        <button type="submit" class="send edit-comment">Edit</button>
                                     </form>
                                     <form class="delete-comment-form" action="/app/posts/deleteComment.php" method="post" enctype="multipart/form-data">
                                         <input type="hidden" name="comment-id" value="<?php echo $comment['id'] ?>">
