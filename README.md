@@ -30,6 +30,7 @@ YRGO school assignment: create a Instagram clone.
 - [x] As a user I should be able to reply to comments
 - [x] As a user I should be able to edit, delete comments and replies on posts. 
 - [x] As a user I'm able to comment on a post.
+- [x] As a use I should be able to search and see a list of posts by query and see users and posts by username.
 
 ## Installation
 
