@@ -95,3 +95,8 @@
 .form input.choose-image {
   border: none;
 }
+
+.logout{
+  position: relative;
+  top:8px;
+}

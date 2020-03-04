@@ -1,0 +1,27 @@
+.search-form{
+    display: flex;
+    flex-direction: row;
+}
+
+.search-input{
+   border: 1px solid var(--light-grey);
+}
+.users-search{
+    height: auto; 
+    margin: 5px;
+    display: flex;
+    max-width:100vw;
+    overflow: auto;
+}
+.search-avatar{
+    max-width: 50px;
+    max-height: 50px;
+    border-radius: 100%;
+    margin: 0 10px 0 0;
+}
+.search-box{
+    padding:5px ;
+    display: flex;
+    align-items: center;
+    
+}

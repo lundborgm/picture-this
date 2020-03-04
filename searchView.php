@@ -1,17 +1,37 @@
 <?php
 require __DIR__ . '/views/header.php';
 
-$allPosts = getAllPosts($pdo);
+// If you're not logged in you'll be redirected
+if (!loggedIn()) {
+    redirect('/');
+}
 
+
+$usrAmount = $_GET['usr'];
 
 
 ?>
 
+<div class="users-search">
+    <!--users-->
+    <?php for ($i = 0; $i < $usrAmount; $i++) : ?>
+        <div class="search-box">
+            <img class="search-avatar" src="" alt="profile image">
+            <a class="visit-profile" href="<?php echo "visitprofile.php?id=" . 26; ?>">
+                <h3></h3>
+            </a>
+        </div>
+    <?php endfor; ?>
+</div>
+
+<!-- posts -->
+
+<?php $allPosts = getPostBySearch($pdo, $_GET['search']); ?>
 <div class="post-wrapper">
     <?php foreach ($allPosts as $post) : ?>
-
         <div class="profile-posts">
-            <?php $likes = countLikes($post['id'], $pdo) ?>
+            <?php $likes = countLikes($post['id'], $pdo)
+            ?>
 
             <div class="post-header">
                 <img class="post-avatar" src="<?php echo "uploads/avatar/" . $post['avatar_image']; ?>" alt="">
@@ -46,7 +66,6 @@ $allPosts = getAllPosts($pdo);
             <div class="comment-wrapper">
                 <ul class="comment-list">
                     <?php foreach ($comments as $comment) : ?>
-
                         <div class="comment-box">
                             <li class="comments">
                                 <p class="author"><?php echo $comment['name']; ?></p>
@@ -88,20 +107,20 @@ $allPosts = getAllPosts($pdo);
                                         <p class="comment"><?php echo $reply['reply_comment'] ?></p>
                                     </li>
                                     <?php if ($_SESSION['user']['id'] === $post['author_id'] || $_SESSION['user']['id'] === $reply['user_id']) : ?>
-                                    <li class='reply-edit'>
+                                        <li class='reply-edit'>
                                             <form class="replyEdit-form" method="post" action="/app/posts/editComment.php">
                                                 <input class="newText" type="hidden" name="newReply" value="">
-                                                <input type="hidden" name="date" value="<?php echo $reply['date'];?>">
+                                                <input type="hidden" name="date" value="<?php echo $reply['date']; ?>">
                                                 <button type="submit" class="send editReply-comment">Edit</button>
                                             </form>
 
                                             <form class="delete-comment-form" action="/app/posts/deleteComment.php" method="post" enctype="multipart/form-data">
-                                            <input type="hidden" name="date" value="<?php echo $reply['date'] ?>">
-                                            <button type="submit" class="send delete-comment" name="delete-reply">Delete</button>
-                                        </form>
-                                    </div>
+                                                <input type="hidden" name="date" value="<?php echo $reply['date'] ?>">
+                                                <button type="submit" class="send delete-comment" name="delete-reply">Delete</button>
+                                            </form>
+                                </div>
                                 </li>
-                                <?php endif; ?>
+                            <?php endif; ?>
                         <?php endforeach; ?>
                         </div>
                     <?php endforeach; ?>
@@ -121,5 +140,7 @@ $allPosts = getAllPosts($pdo);
         </div>
     <?php endforeach; ?>
 </div>
+
+
 
 <?php require __DIR__ . '/views/footer.php'; ?>

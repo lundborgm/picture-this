@@ -1,10 +1,20 @@
 <?php
 // Always start by loading the default application setup.
-require __DIR__.'/../app/autoload.php';
-?>
+require __DIR__ . '/../app/autoload.php';
+$uri = $_SERVER['REQUEST_URI'];
+if (!loggedIn() ) {
+    
+   if($uri === '/login.php' || $uri === '/signup.php'){
 
+} else{
+       redirect('/login.php');
+    } 
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -15,12 +25,14 @@ require __DIR__.'/../app/autoload.php';
     <link rel="stylesheet" href="/assets/styles/main.css">
     <link rel="stylesheet" href="/assets/styles/profile.css">
     <link rel="stylesheet" href="/assets/styles/forms.css">
+    <link rel="stylesheet" href="/assets/styles/search.css">
     <link rel="stylesheet" href="/assets/styles/comments.css">
     <link rel="stylesheet" href="/assets/styles/media.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
 </head>
+
 <body>
 
-    <?php require __DIR__.'/navigation.php'; ?>
+    <?php require __DIR__ . '/navigation.php'; ?>
 
     <div class="container">
