@@ -1,4 +1,7 @@
 # Picture this
+
+[![StyleCI](https://github.styleci.io/repos/227308392/shield?branch=master)](https://github.styleci.io/repos/227308392)
+
 YRGO school assignment: create a Instagram clone.
 
 ## Built with
