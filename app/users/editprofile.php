@@ -5,7 +5,6 @@ declare(strict_types=1);
 require __DIR__.'/../autoload.php';
 
 if (isset($_FILES['avatar'])) {
-
     $avatar = $_FILES['avatar'];
     $avatarName = $avatar['name'];
     $date = date('ymd');
@@ -18,15 +17,11 @@ if (isset($_FILES['avatar'])) {
         'image/gif'
     ];
 
-    if (!in_array($fileType, $allowed)){
+    if (!in_array($fileType, $allowed)) {
         $_SESSION['errors'] = ["The image file type is not allowed. Please use png, jpg, jpeg or gif."];
-    }
-
-    elseif ($avatar['size'] > 3145728) {
+    } elseif ($avatar['size'] > 3145728) {
         $_SESSION['errors'] = ["The image exceeded the file size limit of 3MB. Please try again."];
-    }
-
-    else {
+    } else {
         $destination = __DIR__.'/../../uploads/avatar/'.$avatarImage;
 
         move_uploaded_file($avatar['tmp_name'], $destination);
@@ -50,7 +45,6 @@ if (isset($_FILES['avatar'])) {
 }
 
 if (isset($_POST['biography'])) {
-
     $bio = filter_var($_POST['biography'], FILTER_SANITIZE_STRING);
     $id = filter_var($_SESSION['user']['id'], FILTER_SANITIZE_NUMBER_INT);
 
@@ -69,7 +63,6 @@ if (isset($_POST['biography'])) {
 }
 
 if (isset($_POST['email'])) {
-
     $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
     $id = filter_var($_SESSION['user']['id'], FILTER_SANITIZE_NUMBER_INT);
 

@@ -16,32 +16,26 @@ if (!loggedIn()) {
 
         // The users should only be able to delete their own posts
         if ($userId !== $authorId) {
-
             $_SESSION['errors'] = ["Ooops, you can only delete your own posts!"];
             redirect('/profile.php');
-
         } else {
+            $query = 'DELETE FROM posts WHERE id = :id AND author_id = :author_id';
 
-        $query = 'DELETE FROM posts WHERE id = :id AND author_id = :author_id';
+            $statement = $pdo->prepare($query);
 
-        $statement = $pdo->prepare($query);
+            if (!$statement) {
+                die(var_dump($pdo->errorInfo()));
+            }
 
-        if (!$statement) {
-            die(var_dump($pdo->errorInfo()));
-        }
-
-        $statement->execute([
+            $statement->execute([
             ':id' => $postId,
             ':author_id' => $authorId,
         ]);
 
-        $path = '../../uploads/' . $postImage;
-        unlink($path);
+            $path = '../../uploads/' . $postImage;
+            unlink($path);
 
-        $_SESSION['messages'] = ["Post deleted!"];
-        redirect('/profile.php');
-
+            $_SESSION['messages'] = ["Post deleted!"];
+            redirect('/profile.php');
         }
     }
-
-

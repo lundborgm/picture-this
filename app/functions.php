@@ -110,15 +110,11 @@ function getPostById(int $profileId, PDO $pdo): array
 }
 
 
-function getPostBySearch($pdo,$search)
-{   
-      
-    if($search === NULL){
+function getPostBySearch($pdo, $search)
+{
+    if ($search === null) {
         return getAllPosts($pdo);
-       
-    }else{
-
-        
+    } else {
         $post = "SELECT users.name, posts.* FROM users
           LEFT JOIN posts
            ON posts.author_id = users.id WHERE name LIKE ?";
@@ -131,11 +127,10 @@ function getPostBySearch($pdo,$search)
         $statementPost->execute([
             "%" . $search . "%",
             ]);
-            $postSearch = $statementPost->fetchAll(PDO::FETCH_ASSOC);
+        $postSearch = $statementPost->fetchAll(PDO::FETCH_ASSOC);
             
-            return $postSearch;
-        }
-    
+        return $postSearch;
+    }
 }
 
 /**
@@ -442,7 +437,7 @@ function getUsernameFromComment(int $userId, PDO $pdo): array
  *
  * @return array
  */
-function getReply(int $commentId,PDO $pdo):array
+function getReply(int $commentId, PDO $pdo):array
 {
     $queryFetch = "SELECT reply_comments.reply_comment, reply_comments.user_id, reply_comments.date, users.name
                     FROM reply_comments LEFT JOIN users ON reply_comments.user_id = users.id WHERE comment_id =:comment_id" ;
@@ -460,6 +455,4 @@ function getReply(int $commentId,PDO $pdo):array
     $replys = $statement->fetchAll(PDO::FETCH_ASSOC);
 
     return $replys;
-        
 }
- 

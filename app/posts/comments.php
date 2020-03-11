@@ -7,7 +7,7 @@ require __DIR__.'/../autoload.php';
 header('Content-Type: application/json');
 
 
-if(isset($_POST['reply-text'])){
+if (isset($_POST['reply-text'])) {
     $commentId = $_POST['comment-id'];
     $postId = $_POST['post-id'];
     $reply = $_POST['reply-text'];
@@ -20,13 +20,13 @@ if(isset($_POST['reply-text'])){
     $statement = $pdo -> prepare($queryInsert);
    
 
-   $statement ->execute([
+    $statement ->execute([
         ':comment_id'=>$commentId,
         ':post_id'=>$postId,
         ':user_id'=>$_SESSION['user']['id'],
         ':reply_comment' => $reply,
         ':date' => $date,
-    ]); 
+    ]);
 
     $queryFetch = "SELECT reply_comments.reply_comment, reply_comments.user_id, users.name
                     FROM reply_comments LEFT JOIN users ON reply_comments.user_id = users.id WHERE date = :date";
@@ -47,7 +47,6 @@ if(isset($_POST['reply-text'])){
 
 
 if (isset($_POST['comment'])) {
-
     $userId = (int)$_SESSION['user']['id'];
     $postId = (int)$_POST['post-id'];
     $comment = $_POST['comment'];
@@ -80,8 +79,6 @@ if (isset($_POST['comment'])) {
     
     
     echo json_encode($comments);
-
-
 }
 
 // redirect('/');

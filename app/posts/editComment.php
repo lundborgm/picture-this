@@ -1,4 +1,4 @@
-<?php 
+<?php
 require __DIR__.'/../autoload.php';
 
 if (isset($_POST['newComment'])) {
@@ -18,7 +18,7 @@ if (isset($_POST['newComment'])) {
         ':comment'=> $newComment
     ]);
     echo json_encode('200');
-  //  redirect('/');
+    //  redirect('/');
 }
 
 if (isset($_POST['newReply'])) {
@@ -38,7 +38,5 @@ if (isset($_POST['newReply'])) {
         ':reply_comment' => $newReply
     ]);
     echo json_encode('200');
-  //  redirect('/');
-    }
-
-?>
+    //  redirect('/');
+}

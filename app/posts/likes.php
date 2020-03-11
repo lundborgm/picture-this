@@ -7,7 +7,6 @@ require __DIR__.'/../autoload.php';
 header('Content-Type: application/json');
 
 if (isset($_POST['like'])) {
-
     $postId = (int)$_POST['like'];
     $userId = (int)$_SESSION['user']['id'];
 
@@ -26,22 +25,19 @@ if (isset($_POST['like'])) {
             ':post_id' => $postId,
             ':user_id' => $userId,
         ]);
-
     } else {
+        $query = 'INSERT INTO likes (post_id, user_id) VALUES (:post_id, :user_id)';
 
-    $query = 'INSERT INTO likes (post_id, user_id) VALUES (:post_id, :user_id)';
+        $statement = $pdo->prepare($query);
 
-    $statement = $pdo->prepare($query);
+        if (!$statement) {
+            die(var_dump($pdo->errorInfo()));
+        }
 
-    if (!$statement) {
-        die(var_dump($pdo->errorInfo()));
-    }
-
-    $statement->execute([
+        $statement->execute([
         ':post_id' => $postId,
         ':user_id' => $userId,
     ]);
-
     }
 
     $likes = countLikes($postId, $pdo);

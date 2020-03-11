@@ -7,7 +7,6 @@ require __DIR__.'/../autoload.php';
 header('Content-Type: application/json');
 
 if (isset($_POST['follow'])) {
-
     $profileId = (int)$_POST['follow'];
     $userId = (int)$_SESSION['user']['id'];
 
@@ -26,18 +25,16 @@ if (isset($_POST['follow'])) {
             ':user_id' => $userId,
             ':profile_id' => $profileId,
         ]);
-
     } else {
+        $query = 'INSERT INTO follow (user_id, profile_id) VALUES (:user_id, :profile_id)';
 
-    $query = 'INSERT INTO follow (user_id, profile_id) VALUES (:user_id, :profile_id)';
+        $statement = $pdo->prepare($query);
 
-    $statement = $pdo->prepare($query);
+        if (!$statement) {
+            die(var_dump($pdo->errorInfo()));
+        }
 
-    if (!$statement) {
-        die(var_dump($pdo->errorInfo()));
-    }
-
-    $statement->execute([
+        $statement->execute([
         ':user_id' => $userId,
         ':profile_id' => $profileId,
     ]);
@@ -52,5 +49,4 @@ if (isset($_POST['follow'])) {
     ]);
 
     echo json_encode($json);
-
 }
